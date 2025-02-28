@@ -39,8 +39,8 @@ const projects = [
       "A COVID-19 Tracker displaying real-time global and country-wise case data. It features an interactive map, live statistics, and a graph showing worldwide new cases over time.",
     image: "https://i.ibb.co/BHB2Nsb8/Screenshot-2025-02-28-at-22-29-44.png",
     technologies: ["React", "TypeScript", "Chart.js"],
-    liveUrl: "https://quiz-nexus.netlify.app/",
-    githubUrl: "https://github.com/adityaFE/quiz-app",
+    liveUrl: "https://react-covid-chart.netlify.app/",
+    githubUrl: "https://github.com/adityaFE/covid19Tracker",
   },
   {
     title: "Portfolio Website",
@@ -48,7 +48,7 @@ const projects = [
       "A modern, interactive portfolio featuring smooth animations, 3D effects and a dynamic UI and theme toggle. It includes a validated contact form, embla-carousel for project showcases",
     image: "https://i.ibb.co/7PKT3TF/Screenshot-2025-02-28-at-22-34-50.png",
     technologies: ["React", "TypeScript", "Vite", "Framer Motion" ,"Tailwind CSS","Radix UI"],
-    liveUrl: "https://quiz-nexus.netlify.app/",
+    liveUrl: "https://portfolio-adityafe.netlify.app/",
     githubUrl: "https://github.com/adityaFE/aditya-portfolio",
   }
 ];
