@@ -4,29 +4,19 @@ import { Badge } from "@/components/ui/badge";
 
 const education = [
   {
-    degree: "Master of Computer Science",
-    institution: "University of Technology",
-    period: "2014 - 2016",
+    degree: "Bachelor of Technology",
+    institution: "Heritage Institute of Technology",
+    period: "2017 - 2021",
     description:
-      "Specialized in Human-Computer Interaction and Advanced Web Technologies",
-    achievements: [
-      "Thesis on Responsive Web Design Patterns",
-      "Published research paper on Web Accessibility",
-      "GPA: 3.9/4.0",
-    ],
+      "Bachelor's degree in Information Technology with a focus on Web Development",
   },
   {
-    degree: "Bachelor of Computer Science",
-    institution: "State University",
-    period: "2010 - 2014",
+    degree: "High School",
+    institution: "Don Bosco Academy",
+    period: "2014 - 2016",
     description:
-      "Major in Software Engineering with focus on Web Development",
-    achievements: [
-      "Dean's List all semesters",
-      "Web Development Club President",
-      "First Place in Hackathon 2013",
-    ],
-  },
+      "Completed High School with a focus on Science and Maths",
+  }
 ];
 console.log(education)
 
@@ -65,12 +55,6 @@ export default function Education() {
                     </div>
                     
                     <p className="text-foreground/80 mb-4">{edu.description}</p>
-                    
-                    <ul className="list-disc list-inside space-y-2 text-foreground/70">
-                      {edu.achievements.map((achievement, i) => (
-                        <li key={i}>{achievement}</li>
-                      ))}
-                    </ul>
                   </CardContent>
                 </Card>
               </motion.div>

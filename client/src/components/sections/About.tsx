@@ -28,7 +28,7 @@ export default function About() {
                     Passionate Frontend Developer
                   </h3>
                   <p className="text-foreground/80 leading-relaxed">
-                    With over 8 years of experience in frontend development, I
+                    With over 3 years of experience in frontend development, I
                     specialize in building scalable, performant web applications
                     using modern technologies like React, TypeScript, and
                     Three.js. I'm passionate about creating exceptional user

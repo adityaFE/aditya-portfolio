@@ -34,7 +34,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex-1">
             <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                Portfolio
+                Hello There !
             </Link>
           </div>
 

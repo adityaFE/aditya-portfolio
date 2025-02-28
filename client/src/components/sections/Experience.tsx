@@ -1,34 +1,33 @@
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
+import {  CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Card3D from "../Card3D";
-import TimelineCube from "../TimelineCube";
 
 const experiences = [
   {
-    company: "Tech Solutions Inc.",
+    company: "Synchrony Financial",
     role: "Senior Frontend Developer",
-    period: "2020 - Present",
-    description:
-      "Led the frontend development team in building large-scale React applications. Implemented performance optimizations and modern architecture patterns.",
-    technologies: ["React", "TypeScript", "Next.js", "GraphQL"],
+    period: "August 2022 - Present",
+    description: `
+      Successfully migrated applications from Create React App (CRA) to Vite.
+      Led the migration from Jest to Cypress for end-to-end (e2e) testing integrating Cucumber for behavior-driven development.
+      Developed a dynamic Mock Data Generator enabling seamless testing of user stories in real-time.
+      Experienced with XState for managing complex application states.
+      Optimized data queries and CI/CD pipelines for improved performance.`,
+    technologies: ["ReactJs", "TypeScript", "Cypress", "XState", "Vite", "Jest", "Cucumber", "Redux Toolkit"],
   },
   {
-    company: "Digital Innovations Ltd.",
-    role: "Frontend Developer",
-    period: "2018 - 2020",
-    description:
-      "Developed responsive web applications and implemented complex UI animations. Worked closely with designers to ensure pixel-perfect implementations.",
-    technologies: ["React", "JavaScript", "SCSS", "Redux"],
-  },
-  {
-    company: "Creative Web Agency",
-    role: "Web Developer",
-    period: "2016 - 2018",
-    description:
-      "Built custom websites and web applications for clients across various industries. Focused on responsive design and cross-browser compatibility.",
-    technologies: ["JavaScript", "HTML5", "CSS3", "jQuery"],
-  },
+    company: "Apisero Inc",
+    role: "Software Developer",
+    period: "May 2021 - July 2022",
+    description: `
+      Led the creation of APIs tailored to business needs, improving system functionality and interoperability.
+      Developed and advanced software solutions using cutting-edge methodologies in an agile environment.
+      Applied both manual and automated testing methods to ensure high-quality deliverables.
+      Enhanced workflows through POCs and RnD initiatives, contributing to operational efficiency.
+      Integrated APIs with Snowflake and optimized deployment with Maven and CloudHub.`,
+    technologies: ["Java", "Mulesoft", "Rest API", "DataWeave", "Maven", "Snowflake", "RAML", "Anypoint Studio", "CloudHub"],
+  }
 ];
 
 export default function Experience() {
@@ -44,8 +43,6 @@ export default function Experience() {
           <h2 className="text-3xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
             Work Experience
           </h2>
-
-          <TimelineCube />
 
           <div className="space-y-8 mt-12">
             {experiences.map((exp, index) => (
@@ -72,9 +69,12 @@ export default function Experience() {
                       </Badge>
                     </div>
 
-                    <p className="text-foreground/80 mb-6 leading-relaxed">
-                      {exp.description}
-                    </p>
+                    {/* Bullet Point List for Description */}
+                    <ul className="list-disc list-inside text-foreground/80 mb-6 leading-relaxed">
+                      {exp.description.trim().split("\n").map((line, i) => (
+                        <li key={i}>{line.trim()}</li>
+                      ))}
+                    </ul>
 
                     <div className="flex flex-wrap gap-2">
                       {exp.technologies.map((tech) => (
