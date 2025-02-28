@@ -83,7 +83,7 @@ export default function Hero() {
             dragConstraints={constraintsRef}
             dragElastic={0.1}
           >
-            <p className="text-lg sm:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto backdrop-blur-sm bg-background/20 p-4 rounded-lg">
+            <p className="text-lg sm:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto backdrop-blur-sm p-4 rounded-lg">
               Crafting beautiful, performant, and accessible web experiences with
               modern technologies
             </p>

@@ -4,58 +4,140 @@ import { Progress } from "@/components/ui/progress";
 import ScrollReveal from "../ScrollReveal";
 import SkillCube from "../SkillCube";
 import {
-  SiReact,
-  SiTypescript,
-  SiNextdotjs,
-  SiThreedotjs,
-  SiTailwindcss,
-  SiWebgl,
+  SiReact,  
+  SiTypescript,  
+  SiNextdotjs,  
+  SiThreedotjs,  
+  SiTailwindcss,  
+  SiStyledcomponents,  
+  SiFramer,  
+  SiJavascript,  
+  SiVite,  
+  SiWebgl,  
+  SiCss3,  
+  SiHtml5,  
+  SiGit,  
+  SiRedux,  
+  SiXstate,  
+  SiJest,  
+  SiCypress 
 } from "react-icons/si";
 
 const skills = [
   { 
     name: "React", 
     icon: SiReact, 
-    level: 95,
+    level: 98,
     color: "#61DAFB",
-    description: "Building complex web applications with React and its ecosystem"
+    description: "Building high-performance and scalable web applications"
   },
   { 
     name: "TypeScript", 
     icon: SiTypescript, 
-    level: 90,
+    level: 92,
     color: "#3178C6",
-    description: "Writing type-safe code for scalable applications"
+    description: "Developing robust, type-safe applications"
   },
   { 
     name: "Next.js", 
     icon: SiNextdotjs, 
-    level: 85,
+    level: 90,
     color: "#000000",
-    description: "Creating server-side rendered React applications"
+    description: "Enhancing performance with SSR & SSG"
+  },
+  { 
+    name: "Vite", 
+    icon: SiVite, 
+    level: 95,
+    color: "#646CFF",
+    description: "Optimizing build times and HMR for better DX"
   },
   { 
     name: "Three.js", 
     icon: SiThreedotjs, 
-    level: 80,
+    level: 85,
     color: "#000000",
-    description: "Developing 3D visualizations and interactive experiences"
+    description: "Building interactive 3D experiences"
+  },
+  { 
+    name: "Framer Motion", 
+    icon: SiFramer, 
+    level: 95,
+    color: "#FF00FF",
+    description: "Creating smooth, interactive UI animations"
+  },
+  { 
+    name: "Styled Components", 
+    icon: SiStyledcomponents, 
+    level: 90,
+    color: "#DB7093",
+    description: "Writing maintainable, dynamic component styles"
   },
   { 
     name: "Tailwind CSS", 
     icon: SiTailwindcss, 
-    level: 90,
+    level: 92,
     color: "#38B2AC",
-    description: "Crafting beautiful user interfaces with utility-first CSS"
+    description: "Building modern and responsive UIs efficiently"
   },
   { 
-    name: "WebGL", 
-    icon: SiWebgl, 
-    level: 75,
-    color: "#990000",
-    description: "Creating high-performance graphics and animations"
+    name: "Redux Toolkit", 
+    icon: SiRedux, 
+    level: 90,
+    color: "#764ABC",
+    description: "Managing complex state in large-scale applications"
   },
+  { 
+    name: "XState", 
+    icon: SiXstate, 
+    level: 85,
+    color: "#EB5424",
+    description: "Implementing state machines for better logic handling"
+  },
+  { 
+    name: "Jest", 
+    icon: SiJest, 
+    level: 90,
+    color: "#C21325",
+    description: "Writing unit and integration tests with high coverage"
+  },
+  { 
+    name: "Cypress", 
+    icon: SiCypress, 
+    level: 88,
+    color: "#17202C",
+    description: "Automating end-to-end testing with BDD integration"
+  },
+  { 
+    name: "JavaScript", 
+    icon: SiJavascript, 
+    level: 98,
+    color: "#F7DF1E",
+    description: "Mastering modern JavaScript for frontend development"
+  },
+  { 
+    name: "HTML5", 
+    icon: SiHtml5, 
+    level: 99,
+    color: "#E34F26",
+    description: "Building semantic and accessible web pages"
+  },
+  { 
+    name: "CSS3", 
+    icon: SiCss3, 
+    level: 98,
+    color: "#1572B6",
+    description: "Crafting visually appealing, responsive designs"
+  },
+  { 
+    name: "Git", 
+    icon: SiGit, 
+    level: 95,
+    color: "#F05032",
+    description: "Managing code efficiently with version control"
+  }
 ];
+
 
 export default function Skills() {
   return (

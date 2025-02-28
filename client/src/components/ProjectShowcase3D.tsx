@@ -144,7 +144,7 @@ export default function ProjectShowcase3D({ project, index }: ProjectShowcase3DP
       >
         <div className="bg-background/80 backdrop-blur-sm p-4 rounded-lg text-center">
           <h3 className="text-lg font-semibold text-primary">{project.title}</h3>
-          <p className="text-sm text-foreground/70">{project.description}</p>
+          <img src={project.image} alt="Screenshot of the app" />
         </div>
       </motion.div>
     </motion.div>

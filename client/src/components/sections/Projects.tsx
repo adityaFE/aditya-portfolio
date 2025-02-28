@@ -7,32 +7,50 @@ import ProjectShowcase3D from "../ProjectShowcase3D";
 
 const projects = [
   {
-    title: "E-commerce Platform",
+    title: "Gemini AI Assistant",
     description:
-      "A modern e-commerce platform built with React, Next.js, and TypeScript. Features include real-time cart updates, payment integration, and responsive design.",
-    image: "https://via.placeholder.com/600x400",
-    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-    liveUrl: "#",
-    githubUrl: "#",
+      "A smart AI chatbot built using the Google Gemini API delivering real-time responses and seamless interactions. Designed for simplicity and efficiency, it offers a smooth conversational experience with a clean UI.",
+    image: "https://i.ibb.co/j9Dp5w8d/Screenshot-2025-02-28-at-21-23-08.png",
+    technologies: ["Html", "Css", "Javascript", "Google's Gemini API"],
+    liveUrl: "https://gemini-flash-ai.netlify.app/",
+    githubUrl: "https://github.com/adityaFE/gemini-ai-bot",
   },
   {
-    title: "3D Product Configurator",
+    title: "AI Chatbot",
     description:
-      "Interactive 3D product configurator using Three.js and React Three Fiber. Allows users to customize products in real-time with different materials and colors.",
-    image: "https://via.placeholder.com/600x400",
-    technologies: ["React", "Three.js", "WebGL", "Framer Motion"],
-    liveUrl: "#",
-    githubUrl: "#",
+      "A responsive chatbot built with keyboard navigation for seamless interaction. Designed as a client-facing app, it includes functionalities like file upload, offline mode, chat deletion, and chat download, with the potential for full-stack expansion",
+    image: "https://i.ibb.co/dsjv6SRH/Screenshot-2025-02-28-at-21-55-59.png",
+    technologies: ["React", "Emotion.js","MUI"],
+    liveUrl: "https://ai-chat-bot-client.netlify.app/",
+    githubUrl: "https://github.com/adityaFE/ai-chat-bot",
   },
   {
-    title: "Dashboard Analytics",
+    title: "Quiz App",
     description:
-      "Real-time analytics dashboard with interactive charts and data visualization. Built with React and D3.js for optimal performance.",
-    image: "https://via.placeholder.com/600x400",
-    technologies: ["React", "TypeScript", "D3.js", "Redux"],
-    liveUrl: "#",
-    githubUrl: "#",
+      "A mobile-responsive quiz app allowing users to select the number of questions and topics before starting a timed quiz. It records user responses, displays the final score, and enables answer review, with more features in progress",
+    image: "https://i.ibb.co/vxRkq6sj/Screenshot-2025-02-28-at-22-13-22.png",
+    technologies: ["React", "TypeScript", "Styled Components", "Vite"],
+    liveUrl: "https://quiz-nexus.netlify.app/",
+    githubUrl: "https://github.com/adityaFE/quiz-app",
   },
+  {
+    title: "Covid 19 tracker",
+    description:
+      "A COVID-19 Tracker displaying real-time global and country-wise case data. It features an interactive map, live statistics, and a graph showing worldwide new cases over time.",
+    image: "https://i.ibb.co/BHB2Nsb8/Screenshot-2025-02-28-at-22-29-44.png",
+    technologies: ["React", "TypeScript", "Chart.js"],
+    liveUrl: "https://quiz-nexus.netlify.app/",
+    githubUrl: "https://github.com/adityaFE/quiz-app",
+  },
+  {
+    title: "Portfolio Website",
+    description:
+      "A modern, interactive portfolio featuring smooth animations, 3D effects and a dynamic UI and theme toggle. It includes a validated contact form, embla-carousel for project showcases",
+    image: "https://i.ibb.co/7PKT3TF/Screenshot-2025-02-28-at-22-34-50.png",
+    technologies: ["React", "TypeScript", "Vite", "Framer Motion" ,"Tailwind CSS","Radix UI"],
+    liveUrl: "https://quiz-nexus.netlify.app/",
+    githubUrl: "https://github.com/adityaFE/aditya-portfolio",
+  }
 ];
 
 export default function Projects() {
@@ -45,7 +63,7 @@ export default function Projects() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl font-bold mb-8 text-center">Featured Projects</h2>
+          <h2 style={{position:"relative",zIndex:1}} className="text-3xl font-bold mb-8 text-center">Featured Projects</h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
