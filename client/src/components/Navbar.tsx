@@ -34,7 +34,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex-1">
             <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                Hello There !
+                Welcome!
             </Link>
           </div>
 
@@ -49,9 +49,9 @@ export default function Navbar() {
                 {item.label}
               </a>
             ))}
-            <Button onClick={() => window.open("/api/cv/download", "_blank")}>
+            {/* <Button onClick={() => window.open("/api/cv/download", "_blank")}>
               Download CV
-            </Button>
+            </Button> */}
           </div>
 
           {/* Mobile Menu Button */}
@@ -80,7 +80,7 @@ export default function Navbar() {
                   {item.label}
                 </a>
               ))}
-              <Button
+              {/* <Button
                 className="w-full mt-4"
                 onClick={() => {
                   window.open("/api/cv/download", "_blank");
@@ -88,7 +88,7 @@ export default function Navbar() {
                 }}
               >
                 Download CV
-              </Button>
+              </Button> */}
             </div>
           </div>
         )}

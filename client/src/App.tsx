@@ -20,7 +20,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ParticleBackground />
-      <ThemeToggle />
+      {/* <ThemeToggle /> */}
       <Router />
       <Toaster />
     </QueryClientProvider>
