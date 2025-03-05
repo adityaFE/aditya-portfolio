@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 import ThreeScene from "../ThreeScene";
 import SocialButtons from "../SocialButtons";
+import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   const constraintsRef = useRef(null);
@@ -76,18 +77,18 @@ export default function Hero() {
             ))}
           </motion.div>
 
-          <motion.div
+          {/* <motion.div
             variants={fadeInUp}
             className="relative"
             drag
             dragConstraints={constraintsRef}
             dragElastic={0.1}
-          >
+          > */}
             <p className="text-lg sm:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto backdrop-blur-sm p-4 rounded-lg">
               Crafting beautiful, performant, and accessible web experiences with
               modern technologies
             </p>
-          </motion.div>
+          {/* </motion.div> */}
 
           <motion.div
             variants={fadeInUp}
@@ -103,11 +104,22 @@ export default function Hero() {
             </motion.a>
             <motion.a
               href="#projects"
-              className="bg-secondary text-secondary-foreground px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-300"
+              className="bg-primary text-secondary-foreground px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               View Projects
+            </motion.a>
+            <motion.a
+              href="https://drive.google.com/file/d/126XuCcfN_0jfaE48uIm65nhTTuXd9F5a/view?usp=drive_link" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              download
+              className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-300 transform hover:scale-105"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Download CV
             </motion.a>
           </motion.div>
 
