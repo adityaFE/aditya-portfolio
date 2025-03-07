@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { motion } from 'framer-motion';
 
 interface Project {
+  id: string;
   title: string;
   description: string;
   image: string;
@@ -23,6 +24,7 @@ export default function ProjectShowcase3D({ project, index }: ProjectShowcase3DP
   const rendererRef = useRef<THREE.WebGLRenderer>();
   const modelRef = useRef<THREE.Mesh>();
   const [isHovered, setIsHovered] = useState(false);
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -128,25 +130,20 @@ export default function ProjectShowcase3D({ project, index }: ProjectShowcase3DP
 
   return (
     <motion.div
-      className="relative h-64 cursor-pointer"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: index * 0.2 }}
-    >
-      <div ref={containerRef} className="absolute inset-0" />
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="bg-background/80 backdrop-blur-sm p-4 rounded-lg text-center">
-          <h3 className="text-lg font-semibold text-primary">{project.title}</h3>
-          <img src={project.image} alt="Screenshot of the app" />
-        </div>
-      </motion.div>
-    </motion.div>
+          key={project.id}
+          className="overflow-hidden cursor-pointer"
+          whileHover={{ scale: 1.05 }}
+          onMouseEnter={() => setHoveredProject(project.id)}
+          onMouseLeave={() => setHoveredProject(null)}
+        >
+          <motion.img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-48 object-cover rounded-md"
+            initial={{ opacity: 0.7 }}
+            animate={{ opacity: hoveredProject === project.id ? 1 : 0.7 }}
+            transition={{ duration: 0.3 }}
+          />
+        </motion.div>
   );
 }

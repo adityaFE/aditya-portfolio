@@ -8,13 +8,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { insertContactSchema } from "@shared/schema";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
-import { Send, Sparkles } from "lucide-react";
+import { Send, Loader2 } from "lucide-react";
+import emailjs from "emailjs-com";
+import { useState } from "react";
 import Card3D from "../Card3D";
 
 export default function Contact() {
   const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
   const form = useForm({
     resolver: zodResolver(insertContactSchema),
     defaultValues: {
@@ -24,25 +25,39 @@ export default function Contact() {
     },
   });
 
-  const { mutate, isPending } = useMutation({
-    mutationFn: async (data: any) => {
-      await apiRequest("POST", "/api/contact", data);
-    },
-    onSuccess: () => {
+  const sendEmail = async (data: { name: any; email: any; message: any; }) => {
+    setLoading(true);
+    try {
+      const templateParams = {
+        from_name: data.name,
+        from_email: data.email,
+        message: data.message,
+      };
+
+      await emailjs.send(
+        "service_z73xts3",
+        "template_fgjbg4n",
+        templateParams,
+        "lj8yOkXWBUcPtVU00"
+      );
+
       toast({
-        title: "Message sent!",
+        title: "Message Sent!",
         description: "Thanks for reaching out. I'll get back to you soon.",
       });
+
       form.reset();
-    },
-    onError: () => {
+    } catch (error) {
       toast({
         title: "Error",
         description: "Failed to send message. Please try again.",
         variant: "destructive",
       });
-    },
-  });
+      console.error("EmailJS Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-20 bg-gradient-to-b from-background to-background/95 relative overflow-hidden">
@@ -60,7 +75,7 @@ export default function Contact() {
           <Card3D className="max-w-2xl mx-auto">
             <div className="p-8 relative">
               <Form {...form}>
-                <form onSubmit={form.handleSubmit((data) => mutate(data))} className="space-y-6">
+                <form onSubmit={form.handleSubmit(sendEmail)} className="space-y-6">
                   <FormField
                     control={form.control}
                     name="name"
@@ -123,45 +138,27 @@ export default function Contact() {
                   />
 
                   <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={!loading ? { scale: 1.02 } : {}}
+                    whileTap={!loading ? { scale: 0.98 } : {}}
                   >
                     <Button 
                       type="submit" 
-                      className="w-full bg-primary/90 hover:bg-primary text-white" 
-                      disabled={isPending}
+                      className="w-full bg-primary/90 hover:bg-primary text-white"
+                      disabled={loading}
                     >
-                      {isPending ? (
-                        <Sparkles className="w-4 h-4 mr-2 animate-spin" />
+                      {loading ? (
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                       ) : (
                         <Send className="w-4 h-4 mr-2" />
                       )}
-                      {isPending ? "Sending..." : "Send Message"}
+                      {loading ? "Sending..." : "Send Message"}
                     </Button>
                   </motion.div>
                 </form>
               </Form>
-
-              {/* Decorative elements */}
-              <div className="absolute -z-10 inset-0">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl" />
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl" />
-              </div>
             </div>
           </Card3D>
         </motion.div>
-      </div>
-
-      {/* Background animation */}
-      <div className="absolute inset-0 -z-10 opacity-30">
-        <div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDuration: '4s' }}
-        />
-        <div 
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"
-          style={{ animationDuration: '6s', animationDelay: '2s' }}
-        />
       </div>
     </section>
   );

@@ -7,6 +7,7 @@ import ProjectShowcase3D from "../ProjectShowcase3D";
 
 const projects = [
   {
+    id: "1",
     title: "Gemini AI Assistant",
     description:
       "A smart AI chatbot built using the Google Gemini API delivering real-time responses and seamless interactions. Designed for simplicity and efficiency, it offers a smooth conversational experience with a clean UI.",
@@ -16,6 +17,7 @@ const projects = [
     githubUrl: "https://github.com/adityaFE/gemini-ai-bot",
   },
   {
+    id: "2",
     title: "AI Chatbot",
     description:
       "A responsive chatbot built with keyboard navigation for seamless interaction. Designed as a client-facing app, it includes functionalities like file upload, offline mode, chat deletion, and chat download, with the potential for full-stack expansion",
@@ -25,6 +27,7 @@ const projects = [
     githubUrl: "https://github.com/adityaFE/ai-chat-bot",
   },
   {
+    id: "3",
     title: "Quiz App",
     description:
       "A mobile-responsive quiz app allowing users to select the number of questions and topics before starting a timed quiz. It records user responses, displays the final score, and enables answer review, with more features in progress",
@@ -34,6 +37,7 @@ const projects = [
     githubUrl: "https://github.com/adityaFE/quiz-app",
   },
   {
+    id: "4",
     title: "Covid 19 tracker",
     description:
       "A COVID-19 Tracker displaying real-time global and country-wise case data. It features an interactive map, live statistics, and a graph showing worldwide new cases over time.",
@@ -43,6 +47,7 @@ const projects = [
     githubUrl: "https://github.com/adityaFE/covid19Tracker",
   },
   {
+    id: "5",
     title: "Portfolio Website",
     description:
       "A modern, interactive portfolio featuring smooth animations, 3D effects and a dynamic UI and theme toggle. It includes a validated contact form, embla-carousel for project showcases",
