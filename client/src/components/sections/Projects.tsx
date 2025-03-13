@@ -55,6 +55,16 @@ const projects = [
     technologies: ["React", "TypeScript", "Vite", "Framer Motion" ,"Tailwind CSS","Radix UI"],
     liveUrl: "https://portfolio-adityafe.netlify.app/",
     githubUrl: "https://github.com/adityaFE/aditya-portfolio",
+  },
+  {
+    id: "6",
+    title: "Match-n-Hire",
+    description:
+      "A modern job application platform built with React, Node.js, and MongoDB, featuring user authentication, profile management, and job application tracking.",
+    image: "https://i.ibb.co/YFgxdbqT/Screenshot-2025-03-14-at-02-11-07.png",
+    technologies: ["React", "TypeScript", "Vite", "Framer Motion" ,"Tailwind CSS","Radix UI","MongoDB","Firebase","NodeJS"],
+    liveUrl: "https://match-n-hire.netlify.app/",
+    githubUrl: "https://github.com/adityaFE/match-n-hire",
   }
 ];
 
