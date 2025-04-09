@@ -18,36 +18,26 @@ const projects = [
   },
   {
     id: "2",
-    title: "AI Chatbot",
+    title: "Match-n-Hire",
     description:
-      "A responsive chatbot built with keyboard navigation for seamless interaction. Designed as a client-facing app, it includes functionalities like file upload, offline mode, chat deletion, and chat download, with the potential for full-stack expansion",
-    image: "https://i.ibb.co/dsjv6SRH/Screenshot-2025-02-28-at-21-55-59.png",
-    technologies: ["React", "Emotion.js","MUI"],
-    liveUrl: "https://ai-chat-bot-client.netlify.app/",
-    githubUrl: "https://github.com/adityaFE/ai-chat-bot",
+      "A modern job application platform built with React, Node.js, and MongoDB, featuring user authentication, profile management, and job application tracking.",
+    image: "https://i.ibb.co/YFgxdbqT/Screenshot-2025-03-14-at-02-11-07.png",
+    technologies: ["React", "TypeScript", "Vite", "Framer Motion" ,"Tailwind CSS","Radix UI","MongoDB","Firebase","NodeJS"],
+    liveUrl: "https://match-n-hire.netlify.app/",
+    githubUrl: "https://github.com/adityaFE/match-n-hire",
   },
   {
     id: "3",
-    title: "Quiz App",
+    title: "Trade Assist App",
     description:
-      "A mobile-responsive quiz app allowing users to select the number of questions and topics before starting a timed quiz. It records user responses, displays the final score, and enables answer review, with more features in progress",
-    image: "https://i.ibb.co/vxRkq6sj/Screenshot-2025-02-28-at-22-13-22.png",
-    technologies: ["React", "TypeScript", "Styled Components", "Vite"],
-    liveUrl: "https://quiz-nexus.netlify.app/",
-    githubUrl: "https://github.com/adityaFE/quiz-app",
+      "A modern dummy and static stock market tracking application that provides real-time stock data, watchlist management, and relevant financial news.",
+    image: "https://i.ibb.co/jv5xTDNV/Screenshot-2025-04-10-at-00-53-56.png",
+    technologies: ["React", "TypeScript", "Chart.js", "Google OAuth"],
+    liveUrl: "https://trade-assist.netlify.app/",
+    githubUrl: "https://github.com/adityaFE/trade-assist",
   },
   {
     id: "4",
-    title: "Covid 19 tracker",
-    description:
-      "A COVID-19 Tracker displaying real-time global and country-wise case data. It features an interactive map, live statistics, and a graph showing worldwide new cases over time.",
-    image: "https://i.ibb.co/BHB2Nsb8/Screenshot-2025-02-28-at-22-29-44.png",
-    technologies: ["React", "TypeScript", "Chart.js"],
-    liveUrl: "https://react-covid-chart.netlify.app/",
-    githubUrl: "https://github.com/adityaFE/covid19Tracker",
-  },
-  {
-    id: "5",
     title: "Portfolio Website",
     description:
       "A modern, interactive portfolio featuring smooth animations, 3D effects and a dynamic UI and theme toggle. It includes a validated contact form, embla-carousel for project showcases",
@@ -57,15 +47,25 @@ const projects = [
     githubUrl: "https://github.com/adityaFE/aditya-portfolio",
   },
   {
-    id: "6",
-    title: "Match-n-Hire",
+    id: "5",
+    title: "AI Chatbot",
     description:
-      "A modern job application platform built with React, Node.js, and MongoDB, featuring user authentication, profile management, and job application tracking.",
-    image: "https://i.ibb.co/YFgxdbqT/Screenshot-2025-03-14-at-02-11-07.png",
-    technologies: ["React", "TypeScript", "Vite", "Framer Motion" ,"Tailwind CSS","Radix UI","MongoDB","Firebase","NodeJS"],
-    liveUrl: "https://match-n-hire.netlify.app/",
-    githubUrl: "https://github.com/adityaFE/match-n-hire",
-  }
+      "A responsive chatbot built with keyboard navigation for seamless interaction. Designed as a client-facing app, it includes functionalities like file upload, offline mode, chat deletion, and chat download, with the potential for full-stack expansion",
+    image: "https://i.ibb.co/dsjv6SRH/Screenshot-2025-02-28-at-21-55-59.png",
+    technologies: ["React", "Emotion.js","MUI"],
+    liveUrl: "https://ai-chat-bot-client.netlify.app/",
+    githubUrl: "https://github.com/adityaFE/ai-chat-bot",
+  },
+  {
+    id: "6",
+    title: "Quiz App",
+    description:
+      "A mobile-responsive quiz app allowing users to select the number of questions and topics before starting a timed quiz. It records user responses, displays the final score, and enables answer review, with more features in progress",
+    image: "https://i.ibb.co/vxRkq6sj/Screenshot-2025-02-28-at-22-13-22.png",
+    technologies: ["React", "TypeScript", "Styled Components", "Vite"],
+    liveUrl: "https://quiz-nexus.netlify.app/",
+    githubUrl: "https://github.com/adityaFE/quiz-app",
+  } 
 ];
 
 export default function Projects() {
