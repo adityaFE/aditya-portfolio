@@ -38,6 +38,16 @@ const projects = [
   },
   {
     id: "4",
+    title: "Stack-lite",
+    description:
+      "A full stack platform for developers to collaborate and ask questions in real-time. It features a user-friendly interface with a responsive design and a clean codebase. The project is built using React, TypeScript, Tailwind CSS, Framer Motion, and Vite.",
+    image: "https://i.ibb.co/bgnSXHbS/Screenshot-2025-04-24-at-11-03-09.png",
+    technologies: ["React", "TypeScript","Framer Motion" ,"Tailwind CSS", "Vite","MongoDB","Firebase","NodeJS"],
+    liveUrl: "https://stack-lite.netlify.app/",
+    githubUrl: "https://github.com/adityaFE/stack-overflow",
+  } ,
+  {
+    id: "5",
     title: "Portfolio Website",
     description:
       "A modern, interactive portfolio featuring smooth animations, 3D effects and a dynamic UI and theme toggle. It includes a validated contact form, embla-carousel for project showcases",
@@ -47,7 +57,7 @@ const projects = [
     githubUrl: "https://github.com/adityaFE/aditya-portfolio",
   },
   {
-    id: "5",
+    id: "6",
     title: "AI Chatbot",
     description:
       "A responsive chatbot built with keyboard navigation for seamless interaction. Designed as a client-facing app, it includes functionalities like file upload, offline mode, chat deletion, and chat download, with the potential for full-stack expansion",
@@ -55,17 +65,7 @@ const projects = [
     technologies: ["React", "Emotion.js","MUI"],
     liveUrl: "https://ai-chat-bot-client.netlify.app/",
     githubUrl: "https://github.com/adityaFE/ai-chat-bot",
-  },
-  {
-    id: "6",
-    title: "Quiz App",
-    description:
-      "A mobile-responsive quiz app allowing users to select the number of questions and topics before starting a timed quiz. It records user responses, displays the final score, and enables answer review, with more features in progress",
-    image: "https://i.ibb.co/vxRkq6sj/Screenshot-2025-02-28-at-22-13-22.png",
-    technologies: ["React", "TypeScript", "Styled Components", "Vite"],
-    liveUrl: "https://quiz-nexus.netlify.app/",
-    githubUrl: "https://github.com/adityaFE/quiz-app",
-  } 
+  }
 ];
 
 export default function Projects() {
