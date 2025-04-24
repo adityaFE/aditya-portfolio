@@ -111,7 +111,7 @@ export default function Hero() {
               View Projects
             </motion.a>
             <motion.a
-              href="https://drive.google.com/file/d/126XuCcfN_0jfaE48uIm65nhTTuXd9F5a/view?usp=drive_link" 
+              href="https://drive.google.com/file/d/1ES16S78-KvH73YN0K5iTRRGI0wy29F42/view?usp=sharing" 
               target="_blank" 
               rel="noopener noreferrer" 
               download
