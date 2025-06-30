@@ -9,16 +9,16 @@ export default function Hero() {
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" }
-    }
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
   };
 
   const letterAnimation = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   const name = "Aditya Anand";
@@ -32,11 +32,7 @@ export default function Hero() {
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
         ref={constraintsRef}
       >
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          className="text-center"
-        >
+        <motion.div initial="hidden" animate="visible" className="text-center">
           {/* Name Animation */}
           <motion.div className="mb-4 flex justify-center">
             {name.split("").map((char, index) => (
@@ -48,7 +44,7 @@ export default function Hero() {
                 transition={{
                   duration: 0.5,
                   delay: index * 0.03,
-                  ease: "easeOut"
+                  ease: "easeOut",
                 }}
                 className="text-3xl sm:text-5xl font-bold text-primary inline-block"
               >
@@ -68,7 +64,7 @@ export default function Hero() {
                 transition={{
                   duration: 0.5,
                   delay: 0.5 + index * 0.03,
-                  ease: "easeOut"
+                  ease: "easeOut",
                 }}
                 className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent inline-block"
               >
@@ -84,10 +80,10 @@ export default function Hero() {
             dragConstraints={constraintsRef}
             dragElastic={0.1}
           > */}
-            <p className="text-lg sm:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto backdrop-blur-sm p-4 rounded-lg">
-              Crafting beautiful, performant, and accessible web experiences with
-              modern technologies
-            </p>
+          <p className="text-lg sm:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto backdrop-blur-sm p-4 rounded-lg">
+            Crafting beautiful, performant, and accessible web experiences with
+            modern technologies
+          </p>
           {/* </motion.div> */}
 
           <motion.div
@@ -111,9 +107,9 @@ export default function Hero() {
               View Projects
             </motion.a>
             <motion.a
-              href="https://drive.google.com/file/d/1ES16S78-KvH73YN0K5iTRRGI0wy29F42/view?usp=sharing" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+              href="https://drive.google.com/file/d/1DuHGcvIQ12FRXs838466UtoGx07PoU1X/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
               download
               className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-300 transform hover:scale-105"
               whileHover={{ scale: 1.05 }}
@@ -134,7 +130,7 @@ export default function Hero() {
               duration: 1.5,
               repeat: Infinity,
               repeatType: "reverse",
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           >
             <motion.svg
