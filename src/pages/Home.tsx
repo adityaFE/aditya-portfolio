@@ -8,10 +8,13 @@ import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import ClickSpark from "../../react-bits/ClickSpark/ClickSpark";
 
 export default function Home() {
   const [visitCount, setVisitCount] = useState(0);
-  const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
+  const [currentTime, setCurrentTime] = useState(
+    new Date().toLocaleTimeString()
+  );
 
   useEffect(() => {
     const lastVisitTime = localStorage.getItem("lastVisitTime");
@@ -39,37 +42,48 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col justify-between bg-gray-900 text-white">
       <div>
-        <Navbar />
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Education />
-        <Contact />
+        <ClickSpark
+          sparkColor="#fff"
+          sparkSize={10}
+          sparkRadius={15}
+          sparkCount={8}
+          duration={400}
+        >
+          <Navbar />
+          <Hero />
+          <About />
+          <Skills />
+          <Experience />
+          <Projects />
+          <Education />
+          <Contact />
+        </ClickSpark>
       </div>
-      
-      <motion.footer    
+
+      <motion.footer
         className="text-center mt-6 p-6 bg-gradient-to-r text-white text-sm w-full shadow-md"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-          <motion.div 
-          style={{position:"relative", zIndex: 1, marginBottom:"1rem"}}
+        <motion.div
+          style={{ position: "relative", zIndex: 1, marginBottom: "1rem" }}
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ repeat: Infinity, duration: 2 }}
         >
           Page Visits: {visitCount}
         </motion.div>
-          
-        <div className="text-xl font-semibold animate-pulse">Current Time: {currentTime}</div>
+
+        <div className="text-xl font-semibold animate-pulse">
+          Current Time: {currentTime}
+        </div>
         <motion.div
           className="mt-2 text-lg"
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ repeat: Infinity, duration: 2 }}
         >
-          © {new Date().getFullYear()} Made with ❤️ by Aditya. All rights reserved.
+          © {new Date().getFullYear()} Made with ❤️ by Aditya. All rights
+          reserved.
         </motion.div>
       </motion.footer>
     </div>

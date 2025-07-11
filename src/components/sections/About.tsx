@@ -1,9 +1,16 @@
 import { motion } from "framer-motion";
 import Card3D from "../Card3D";
+import ScrambledText from "../../../react-bits/ScrambledText/ScrambledText";
 
 export default function About() {
+  const label =
+    " With over 4 years of experience in frontend development, I specialize in building scalable, performant web applications using modern technologies like React, TypeScript, and Three.js. I'm passionate about creating exceptional user experiences and writing clean, maintainable code.";
+
   return (
-    <section id="about" className="py-20 bg-background relative overflow-hidden">
+    <section
+      id="about"
+      className="py-20 bg-background relative overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -27,33 +34,44 @@ export default function About() {
                   <h3 className="text-xl font-semibold mb-4 bg-gradient-to-r from-primary/90 to-primary bg-clip-text text-transparent">
                     Passionate Frontend Developer
                   </h3>
-                  <p className="text-foreground/80 leading-relaxed">
-                    With over 3 years of experience in frontend development, I
-                    specialize in building scalable, performant web applications
-                    using modern technologies like React, TypeScript, and
-                    Three.js. I'm passionate about creating exceptional user
-                    experiences and writing clean, maintainable code.
-                  </p>
-                  <p className="text-foreground/80 leading-relaxed mt-4">
+                  <ScrambledText
+                    className="text-foreground/80 leading-relaxed text-sm m-0"
+                    radius={100}
+                    duration={1.2}
+                    speed={0.5}
+                    scrambleChars=":*"
+                  >
+                    {label}
+                  </ScrambledText>
+                  <ScrambledText
+                    className="text-foreground/80 leading-relaxed mt-4 text-sm m-0"
+                    radius={100}
+                    duration={1.2}
+                    speed={0.5}
+                    scrambleChars=":*"
+                  >
                     I enjoy working on challenging projects that push the
                     boundaries of what's possible on the web, while maintaining
                     a strong focus on accessibility and best practices.
-                  </p>
+                  </ScrambledText>
                 </motion.div>
 
                 <div className="space-y-4">
                   {[
                     {
                       title: "Frontend Architecture",
-                      description: "Designing scalable and maintainable frontend architectures",
+                      description:
+                        "Designing scalable and maintainable frontend architectures",
                     },
                     {
                       title: "Performance Optimization",
-                      description: "Optimizing web applications for speed and efficiency",
+                      description:
+                        "Optimizing web applications for speed and efficiency",
                     },
                     {
                       title: "UI/UX Development",
-                      description: "Creating beautiful and intuitive user interfaces",
+                      description:
+                        "Creating beautiful and intuitive user interfaces",
                     },
                   ].map((item, index) => (
                     <motion.div

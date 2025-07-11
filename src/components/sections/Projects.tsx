@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 import ProjectShowcase3D from "../ProjectShowcase3D";
+import ScrambledText from "../../../react-bits/ScrambledText/ScrambledText";
 
 const projects = [
   {
@@ -22,7 +23,17 @@ const projects = [
     description:
       "A modern job application platform built with React, Node.js, and MongoDB, featuring user authentication, profile management, and job application tracking.",
     image: "https://i.ibb.co/YFgxdbqT/Screenshot-2025-03-14-at-02-11-07.png",
-    technologies: ["React", "TypeScript", "Vite", "Framer Motion" ,"Tailwind CSS","Radix UI","MongoDB","Firebase","NodeJS"],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Framer Motion",
+      "Tailwind CSS",
+      "Radix UI",
+      "MongoDB",
+      "Firebase",
+      "NodeJS",
+    ],
     liveUrl: "https://match-n-hire.netlify.app/",
     githubUrl: "https://github.com/adityaFE/match-n-hire",
   },
@@ -42,17 +53,33 @@ const projects = [
     description:
       "A full stack platform for developers to collaborate and ask questions in real-time. It features a user-friendly interface with a responsive design and a clean codebase. The project is built using React, TypeScript, Tailwind CSS, Framer Motion, and Vite.",
     image: "https://i.ibb.co/bgnSXHbS/Screenshot-2025-04-24-at-11-03-09.png",
-    technologies: ["React", "TypeScript","Framer Motion" ,"Tailwind CSS", "Vite","MongoDB","Firebase","NodeJS"],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Framer Motion",
+      "Tailwind CSS",
+      "Vite",
+      "MongoDB",
+      "Firebase",
+      "NodeJS",
+    ],
     liveUrl: "https://stack-lite.netlify.app/",
     githubUrl: "https://github.com/adityaFE/stack-overflow",
-  } ,
+  },
   {
     id: "5",
     title: "Portfolio Website",
     description:
       "A modern, interactive portfolio featuring smooth animations, 3D effects and a dynamic UI and theme toggle. It includes a validated contact form, embla-carousel for project showcases",
     image: "https://i.ibb.co/7PKT3TF/Screenshot-2025-02-28-at-22-34-50.png",
-    technologies: ["React", "TypeScript", "Vite", "Framer Motion" ,"Tailwind CSS","Radix UI"],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Framer Motion",
+      "Tailwind CSS",
+      "Radix UI",
+    ],
     liveUrl: "https://portfolio-adityafe.netlify.app/",
     githubUrl: "https://github.com/adityaFE/aditya-portfolio",
   },
@@ -62,10 +89,10 @@ const projects = [
     description:
       "A responsive chatbot built with keyboard navigation for seamless interaction. Designed as a client-facing app, it includes functionalities like file upload, offline mode, chat deletion, and chat download, with the potential for full-stack expansion",
     image: "https://i.ibb.co/dsjv6SRH/Screenshot-2025-02-28-at-21-55-59.png",
-    technologies: ["React", "Emotion.js","MUI"],
+    technologies: ["React", "Emotion.js", "MUI"],
     liveUrl: "https://ai-chat-bot-client.netlify.app/",
     githubUrl: "https://github.com/adityaFE/ai-chat-bot",
-  }
+  },
 ];
 
 export default function Projects() {
@@ -78,7 +105,12 @@ export default function Projects() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 style={{position:"relative",zIndex:1}} className="text-3xl font-bold mb-8 text-center">Featured Projects</h2>
+          <h2
+            style={{ position: "relative", zIndex: 1 }}
+            className="text-3xl font-bold mb-8 text-center"
+          >
+            Featured Projects
+          </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
@@ -92,15 +124,27 @@ export default function Projects() {
                 <Card className="h-full flex flex-col bg-card/30 backdrop-blur-sm border-primary/10">
                   <ProjectShowcase3D project={project} index={index} />
                   <CardHeader>
-                    <CardTitle className="text-xl sm:text-2xl">{project.title}</CardTitle>
+                    <CardTitle className="text-xl sm:text-2xl">
+                      {project.title}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="flex-1">
-                    <p className="text-foreground/80 mb-4 text-sm sm:text-base">{project.description}</p>
+                    <p className="text-foreground/80 mb-4 text-sm sm:text-base">
+                      <ScrambledText
+                        className="text-sm m-0"
+                        radius={100}
+                        duration={1.2}
+                        speed={0.5}
+                        scrambleChars=":*"
+                      >
+                        {project.description}
+                      </ScrambledText>
+                    </p>
 
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.technologies.map((tech) => (
-                        <Badge 
-                          key={tech} 
+                        <Badge
+                          key={tech}
                           variant="secondary"
                           className="bg-primary/5 text-primary/90"
                         >
