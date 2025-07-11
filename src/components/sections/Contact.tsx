@@ -4,7 +4,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useForm } from "react-hook-form";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Send, Loader2 } from "lucide-react";
 import emailjs from "emailjs-com";
 import { useState, useEffect } from "react";
@@ -36,7 +43,11 @@ export default function Contact() {
     else if (errors.message) setFocus("message");
   }, [errors, setFocus]);
 
-  const sendEmail = async (data: { name: string; email: string; message: string }) => {
+  const sendEmail = async (data: {
+    name: string;
+    email: string;
+    message: string;
+  }) => {
     setLoading(true);
     try {
       await emailjs.send(
@@ -50,20 +61,35 @@ export default function Contact() {
         "lj8yOkXWBUcPtVU00"
       );
 
-      toast({ title: "Message Sent!", description: "Thanks for reaching out. I'll get back to you soon." });
+      toast({
+        title: "Message Sent!",
+        description: "Thanks for reaching out. I'll get back to you soon.",
+      });
 
       form.reset();
     } catch (error) {
-      toast({ title: "Error", description: "Failed to send message. Please try again.", variant: "destructive" });
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-background to-background/95 relative overflow-hidden">
+    <section
+      id="contact"
+      className="py-20 bg-gradient-to-b from-background to-background/95 relative overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <h2 className="text-3xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
             Get in Touch
           </h2>
@@ -78,7 +104,9 @@ export default function Contact() {
                     rules={{ required: "Name is required" }}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-foreground/90">Name</FormLabel>
+                        <FormLabel className="text-foreground/90">
+                          Name
+                        </FormLabel>
                         <FormControl>
                           <motion.div whileHover={{ scale: 1.01 }}>
                             <Input
@@ -101,36 +129,45 @@ export default function Contact() {
                       name="email"
                       rules={{
                         required: "Email is required",
-                        pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Invalid email format" },
+                        pattern: {
+                          value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                          message: "Invalid email format",
+                        },
                       }}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-foreground/90">Email</FormLabel>
+                          <FormLabel className="text-foreground/90">
+                            Email
+                          </FormLabel>
                           <FormControl>
                             <motion.div whileHover={{ scale: 1.01 }}>
-                            <Input
-                              type="email"
-                              placeholder="Your email"
-                              {...field}
-                              className={`border rounded-md px-3 py-2 w-full bg-background/50 backdrop-blur-sm 
+                              <Input
+                                type="email"
+                                placeholder="Your email"
+                                {...field}
+                                className={`border rounded-md px-3 py-2 w-full bg-background/50 backdrop-blur-sm 
                               focus:border-primary focus:ring-1 focus:ring-primary
-                              ${errors.email ? "border-red-500" : "border-gray-300"}`}
-                            />
+                              ${
+                                errors.email
+                                  ? "border-red-500"
+                                  : "border-gray-300"
+                              }`}
+                              />
                             </motion.div>
                           </FormControl>
                           {errors.email && (
-                          <motion.div
-                            initial={{ opacity: 0, y: -5 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="mt-2 p-2 bg-red-900/80 text-red-300 border border-red-500/50 rounded-md text-sm flex items-start gap-2 backdrop-blur-md"
-                          >
-                          ⚠️ {errors.email.message}
-                          </motion.div>
+                            <motion.div
+                              initial={{ opacity: 0, y: -5 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="mt-2 p-2 bg-red-900/80 text-red-300 border border-red-500/50 rounded-md text-sm flex items-start gap-2 backdrop-blur-md"
+                            >
+                              ⚠️ {errors.email.message}
+                            </motion.div>
                           )}
                         </FormItem>
-                        )}
-                        />
+                      )}
+                    />
                   </form>
 
                   <FormField
@@ -139,7 +176,9 @@ export default function Contact() {
                     rules={{ required: "Message is required" }}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-foreground/90">Message</FormLabel>
+                        <FormLabel className="text-foreground/90">
+                          Message
+                        </FormLabel>
                         <FormControl>
                           <motion.div whileHover={{ scale: 1.01 }}>
                             <Textarea
@@ -156,9 +195,20 @@ export default function Contact() {
                     )}
                   />
 
-                  <motion.div whileHover={!loading ? { scale: 1.02 } : {}} whileTap={!loading ? { scale: 0.98 } : {}}>
-                    <Button type="submit" className="w-full bg-primary/90 hover:bg-primary text-white" disabled={loading}>
-                      {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
+                  <motion.div
+                    whileHover={!loading ? { scale: 1.02 } : {}}
+                    whileTap={!loading ? { scale: 0.98 } : {}}
+                  >
+                    <Button
+                      type="submit"
+                      className="w-full bg-primary/90 hover:bg-primary text-white"
+                      disabled={loading}
+                    >
+                      {loading ? (
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      ) : (
+                        <Send className="w-4 h-4 mr-2" />
+                      )}
                       {loading ? "Sending..." : "Send Message"}
                     </Button>
                   </motion.div>
