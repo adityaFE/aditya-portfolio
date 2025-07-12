@@ -1,10 +1,5 @@
 import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
-import ProjectShowcase3D from "../ProjectShowcase3D";
-import ScrambledText from "../../../react-bits/ScrambledText/ScrambledText";
+import Carousel from "../../../react-bits/Carousel/Carousel";
 
 const projects = [
   {
@@ -98,85 +93,26 @@ const projects = [
 export default function Projects() {
   return (
     <section id="projects" className="py-20 bg-background/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2
-            style={{ position: "relative", zIndex: 1 }}
-            className="text-3xl font-bold mb-8 text-center"
-          >
+          <h2 className="text-3xl font-bold mb-8 text-center">
             Featured Projects
           </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card className="h-full flex flex-col bg-card/30 backdrop-blur-sm border-primary/10">
-                  <ProjectShowcase3D project={project} index={index} />
-                  <CardHeader>
-                    <CardTitle className="text-xl sm:text-2xl">
-                      {project.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-1">
-                    <p className="text-foreground/80 mb-4 text-sm sm:text-base">
-                      <ScrambledText
-                        className="text-sm m-0"
-                        radius={100}
-                        duration={1.2}
-                        speed={0.5}
-                        scrambleChars=":*"
-                      >
-                        {project.description}
-                      </ScrambledText>
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.map((tech) => (
-                        <Badge
-                          key={tech}
-                          variant="secondary"
-                          className="bg-primary/5 text-primary/90"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    <div className="flex gap-2 sm:gap-4 flex-wrap">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => window.open(project.liveUrl, "_blank")}
-                        className="flex-1 min-w-[120px]"
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Live Demo
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => window.open(project.githubUrl, "_blank")}
-                        className="flex-1 min-w-[120px]"
-                      >
-                        <Github className="w-4 h-4 mr-2" />
-                        Code
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+          <div className="flex justify-center">
+            <Carousel
+              items={projects}
+              baseWidth={350}
+              autoplay={true}
+              autoplayDelay={4000}
+              pauseOnHover={true}
+              loop={true}
+              round={false}
+            />
           </div>
         </motion.div>
       </div>

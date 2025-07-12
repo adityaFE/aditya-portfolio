@@ -1,24 +1,25 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, PanInfo, useMotionValue, useTransform } from "framer-motion";
-// replace icons with your own if needed
-import {
-  FiCircle,
-  FiCode,
-  FiFileText,
-  FiLayers,
-  FiLayout,
-} from "react-icons/fi";
+import ProjectShowcase3D from "@/components/ProjectShowcase3D";
 import "./Carousel.css";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import ScrambledText from "../ScrambledText/ScrambledText";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Github } from "lucide-react";
 
 export interface CarouselItem {
+  id: string;
   title: string;
   description: string;
-  id: number;
-  icon?: React.ReactElement;
+  image: string;
+  technologies: string[];
+  liveUrl: string;
+  githubUrl: string;
 }
 
 export interface CarouselProps {
-  items?: CarouselItem[];
+  items: CarouselItem[]; // ✅ Now required
   baseWidth?: number;
   autoplay?: boolean;
   autoplayDelay?: number;
@@ -27,46 +28,21 @@ export interface CarouselProps {
   round?: boolean;
 }
 
-const DEFAULT_ITEMS: CarouselItem[] = [
-  {
-    title: "Text Animations",
-    description: "Cool text animations for your projects.",
-    id: 1,
-    icon: <FiFileText className="carousel-icon" />,
-  },
-  {
-    title: "Animations",
-    description: "Smooth animations for your projects.",
-    id: 2,
-    icon: <FiCircle className="carousel-icon" />,
-  },
-  {
-    title: "Components",
-    description: "Reusable components for your projects.",
-    id: 3,
-    icon: <FiLayers className="carousel-icon" />,
-  },
-  {
-    title: "Backgrounds",
-    description: "Beautiful backgrounds and patterns for your projects.",
-    id: 4,
-    icon: <FiLayout className="carousel-icon" />,
-  },
-  {
-    title: "Common UI",
-    description: "Common UI components are coming soon!",
-    id: 5,
-    icon: <FiCode className="carousel-icon" />,
-  },
-];
-
 const DRAG_BUFFER = 0;
 const VELOCITY_THRESHOLD = 500;
 const GAP = 16;
-const SPRING_OPTIONS = { type: "spring", stiffness: 300, damping: 30 };
+const SPRING_OPTIONS: {
+  type: "spring";
+  stiffness: number;
+  damping: number;
+} = {
+  type: "spring",
+  stiffness: 300,
+  damping: 30,
+};
 
 export default function Carousel({
-  items = DEFAULT_ITEMS,
+  items,
   baseWidth = 300,
   autoplay = false,
   autoplayDelay = 3000,
@@ -85,6 +61,7 @@ export default function Carousel({
   const [isResetting, setIsResetting] = useState<boolean>(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (pauseOnHover && containerRef.current) {
       const container = containerRef.current;
@@ -100,18 +77,20 @@ export default function Carousel({
   }, [pauseOnHover]);
 
   useEffect(() => {
-    if (autoplay && (!pauseOnHover || !isHovered)) {
+    if (autoplay && !isResetting && (!pauseOnHover || !isHovered)) {
       const timer = setInterval(() => {
         setCurrentIndex((prev) => {
-          if (prev === items.length - 1 && loop) {
+          if (loop && prev === items.length - 1) {
             return prev + 1;
           }
           if (prev === carouselItems.length - 1) {
-            return loop ? 0 : prev;
+            return prev;
           }
+
           return prev + 1;
         });
       }, autoplayDelay);
+
       return () => clearInterval(timer);
     }
   }, [
@@ -122,16 +101,17 @@ export default function Carousel({
     items.length,
     carouselItems.length,
     pauseOnHover,
+    isResetting,
   ]);
-
-  const effectiveTransition = isResetting ? { duration: 0 } : SPRING_OPTIONS;
 
   const handleAnimationComplete = () => {
     if (loop && currentIndex === carouselItems.length - 1) {
       setIsResetting(true);
       x.set(0);
       setCurrentIndex(0);
-      setTimeout(() => setIsResetting(false), 50);
+      setTimeout(() => {
+        setIsResetting(false);
+      }, autoplayDelay);
     }
   };
 
@@ -188,8 +168,14 @@ export default function Carousel({
           x,
         }}
         onDragEnd={handleDragEnd}
-        animate={{ x: -(currentIndex * trackItemOffset) }}
-        transition={effectiveTransition}
+        animate={
+          !isResetting
+            ? {
+                x: -(currentIndex * trackItemOffset),
+                transition: SPRING_OPTIONS,
+              }
+            : false
+        }
         onAnimationComplete={handleAnimationComplete}
       >
         {carouselItems.map((item, index) => {
@@ -207,22 +193,77 @@ export default function Carousel({
               style={{
                 width: itemWidth,
                 height: round ? itemWidth : "100%",
-                rotateY: rotateY,
+                rotateY,
                 ...(round && { borderRadius: "50%" }),
               }}
-              transition={effectiveTransition}
             >
-              <div className={`carousel-item-header ${round ? "round" : ""}`}>
-                <span className="carousel-icon-container">{item.icon}</span>
-              </div>
-              <div className="carousel-item-content">
-                <div className="carousel-item-title">{item.title}</div>
-                <p className="carousel-item-description">{item.description}</p>
-              </div>
+              <ProjectShowcase3D project={item} index={index} />
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="h-full flex flex-col bg-card/30 backdrop-blur-sm border-primary/10">
+                  <CardHeader>
+                    <CardTitle className="text-xl sm:text-2xl">
+                      {item.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-1">
+                    <p className="text-foreground/80 mb-4 text-sm sm:text-base">
+                      <ScrambledText
+                        className="text-sm m-0"
+                        radius={100}
+                        duration={1.2}
+                        speed={0.5}
+                        scrambleChars=":*"
+                      >
+                        {item.description}
+                      </ScrambledText>
+                    </p>
+
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {item.technologies.map((tech) => (
+                        <Badge
+                          key={tech}
+                          variant="secondary"
+                          className="bg-primary/5 text-primary/90"
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    <div className="flex gap-2 sm:gap-4 flex-wrap">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => window.open(item.liveUrl, "_blank")}
+                        className="flex-1 min-w-[120px]"
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Live Demo
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => window.open(item.githubUrl, "_blank")}
+                        className="flex-1 min-w-[120px]"
+                      >
+                        <Github className="w-4 h-4 mr-2" />
+                        Code
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </motion.div>
           );
         })}
       </motion.div>
+
       <div className={`carousel-indicators-container ${round ? "round" : ""}`}>
         <div className="carousel-indicators">
           {items.map((_, index) => (
