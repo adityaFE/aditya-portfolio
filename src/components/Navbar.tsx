@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import GooeyNav from "../../react-bits/GooeyNav/GooeyNav";
 import TrueFocus from "../../react-bits/TrueFocus/TrueFocus";
+import { log } from "console";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -14,22 +15,41 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
-const items = [
-  { label: "Home", href: "#" },
-  { label: "About", href: "#" },
-  { label: "Contact", href: "#" },
-];
-
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Determine initial active index based on current hash
+  const getInitialActiveIndex = () => {
+    if (typeof window !== "undefined" && window.location.hash) {
+      const idx = navItems.findIndex(
+        (item) => item.href === window.location.hash
+      );
+      return idx !== -1 ? idx : 0;
+    }
+    return 0;
+  };
+
+  const [activeIndex, setActiveIndex] = useState(getInitialActiveIndex());
+  console.log("Active Index:", activeIndex);
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Clear the hash and scroll to top AFTER initialActiveIndex is set
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hash) {
+      window.scrollTo(0, 0);
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+      );
+    }
   }, []);
 
   return (
@@ -53,10 +73,10 @@ export default function Navbar() {
           <div className="hidden md:flex space-x-4">
             <GooeyNav
               items={navItems}
+              initialActiveIndex={activeIndex} // pass initial active tab index
               particleCount={15}
               particleDistances={[90, 10]}
               particleR={100}
-              initialActiveIndex={0}
               animationTime={600}
               timeVariance={300}
               colors={[1, 2, 3, 1, 2, 3, 1, 4]}
@@ -83,12 +103,15 @@ export default function Navbar() {
         {isOpen && (
           <div className="md:hidden absolute left-0 right-0 top-16 bg-background/85 backdrop-blur-md border-t border-primary/10">
             <div className="px-4 py-6 space-y-4">
-              {navItems.map((item) => (
+              {navItems.map((item, idx) => (
                 <a
                   key={item.href}
                   href={item.href}
                   className="block px-3 py-2 text-base text-foreground/70 hover:text-foreground hover:bg-primary/5 rounded-lg transition-colors font-bold"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    setActiveIndex(idx);
+                  }}
                 >
                   <TrueFocus
                     sentence={item.label}

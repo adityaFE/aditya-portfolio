@@ -42,7 +42,7 @@ export default function Hero() {
               className="w-48 h-48 rounded-full overflow-hidden border-4 border-primary"
               initial={{ rotateY: 0, opacity: 0 }}
               animate={{
-                rotateY: [0, 1440, 0], // 4 spins then stop at 0
+                rotateY: [0, 720, 0],
                 opacity: [0, 1, 1],
               }}
               transition={{
