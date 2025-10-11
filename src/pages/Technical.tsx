@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ClickSpark from "../../react-bits/ClickSpark/ClickSpark";
 
-export default function Home() {
+export default function Technical() {
   const [visitCount, setVisitCount] = useState(0);
   const [currentTime, setCurrentTime] = useState(
     new Date().toLocaleTimeString()
@@ -41,6 +41,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col justify-between bg-gray-900 text-white">
+      
       <div>
         <ClickSpark
           sparkColor="#fff"
