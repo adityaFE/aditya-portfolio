@@ -33,39 +33,6 @@ export default function Hero() {
         ref={constraintsRef}
       >
         <motion.div initial="hidden" animate="visible" className="text-center">
-          {/* Profile Image */}
-          <motion.div
-            variants={fadeInUp}
-            className="mt-16 mb-8 flex justify-center"
-          >
-            <motion.div
-              className="w-48 h-48 rounded-full overflow-hidden border-4 border-primary"
-              initial={{ rotateY: 0, opacity: 0 }}
-              animate={{
-                rotateY: [0, 720, 0],
-                opacity: [0, 1, 1],
-              }}
-              transition={{
-                rotateY: {
-                  times: [0, 0.7, 1],
-                  duration: 2,
-                  ease: ["easeIn", "easeOut"],
-                },
-                opacity: { duration: 0.6, delay: 0.3 },
-              }}
-              style={{ perspective: 1000 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <img
-                src="/IMG_7896.jpg"
-                alt="Aditya Anand"
-                className="w-full h-full object-cover"
-                style={{ backfaceVisibility: "hidden" }}
-              />
-            </motion.div>
-          </motion.div>
-
-          {/* Name Animation */}
           <motion.div className="mb-4 flex justify-center">
             {name.split("").map((char, index) => (
               <motion.span
@@ -118,7 +85,14 @@ export default function Hero() {
           </p>
 
           <motion.div
-            variants={fadeInUp}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.8, ease: "easeOut" }
+              }
+            }}
             className="flex flex-col sm:flex-row justify-center gap-4"
           >
             <motion.a
