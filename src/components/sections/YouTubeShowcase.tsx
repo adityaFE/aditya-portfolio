@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { AnimatedCounter } from "../AnimatedCounter";
 import { Carousel } from "../Carousel";
 import {API_BASE_URL} from '../../../config';
+import { useEffect, useState } from "react";
 
 interface Video {
   id: string;
@@ -54,16 +55,32 @@ const fetchYouTubeData = async (): Promise<YouTubeData> => {
 };
 
 export const YouTubeShowcase = () => {
+  const [slowWarning, setSlowWarning] = useState(false);
+
   const { data, isLoading } = useQuery<YouTubeData>({
     queryKey: ["youtubeData"],
     queryFn: fetchYouTubeData,
     staleTime: Infinity,
   });
 
+  useEffect(() => {
+    if (isLoading) {
+      const timer = setTimeout(() => setSlowWarning(true), 2000);
+      return () => clearTimeout(timer);
+    } else {
+      setSlowWarning(false);
+    }
+  }, [isLoading]);
+
   if (isLoading || !data) {
     return (
-      <div className="w-full h-64 flex items-center justify-center text-2xl font-bold text-primary animate-pulse">
-        Loading Magic...
+      <div className="w-full h-64 flex flex-col items-center justify-center text-2xl font-bold text-primary animate-pulse">
+        <span>Loading Magic...</span>
+        {slowWarning && (
+          <span className="text-sm font-medium text-muted-foreground mt-2 text-center">
+            Our free server might take a minute to wake up, please hang tight!
+          </span>
+        )}
       </div>
     );
   }
