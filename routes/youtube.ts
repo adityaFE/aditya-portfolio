@@ -200,9 +200,10 @@ router.get("/", async (req, res) => {
       videos,
     });
   } catch (err) {
-    console.error("YouTube API error:", err.message);
-    res.status(500).json({ error: "Failed to fetch YouTube data" });
-  }
+  const error = err instanceof Error ? err : new Error(String(err));
+  console.error("Error fetching YouTube data:", error.message);
+  res.status(500).json({ error: error.message });
+}
 });
 
 export default router;
