@@ -166,7 +166,7 @@ export const YouTubeShowcase = () => {
         <div className="text-center text-muted-foreground text-lg">
   There&apos;s something wrong with the YouTube API.{" "}
   <a
-    href={`https://www.youtube.com/channel/${CHANNEL_ID}`}
+    href={`https://www.youtube.com/channel/@VlogtasticAditya`}
     target="_blank"
     rel="noopener noreferrer"
     className="text-primary font-semibold hover:underline hover:text-primary/80 transition-colors duration-200"
