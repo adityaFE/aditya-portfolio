@@ -5,6 +5,8 @@ import TextType from '../../react-bits/TextType/TextType';
 import GradientText from '../../react-bits/GradientText/GradientText';
 import ShinyText from '../../react-bits/ShinyText/ShinyText';
 import '../index.css'
+import ClickSpark from '../../react-bits/ClickSpark/ClickSpark';
+import { MouseFollower } from '@/components/MouseFollower';
 
 const greetings = [
   { text: 'Namaste', lang: 'Hindi' },
@@ -55,7 +57,14 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="relative text-blue-500 overflow-x-hidden">
-
+      <ClickSpark
+          sparkColor="#fff"
+          sparkSize={10}
+          sparkRadius={15}
+          sparkCount={8}
+          duration={400}
+        >
+          <MouseFollower />
       <div
         className="md:hidden w-full flex flex-col items-center justify-between relative px-6 py-10 space-y-10"
         style={{ minHeight: viewportHeight }}
@@ -162,7 +171,14 @@ const LandingPage: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <ShinyText text="Technical" disabled={false} speed={1} />
+               <GradientText
+              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+              animationSpeed={3}
+              showBorder={false}
+              className="custom-class"
+            >
+              Technical
+            </GradientText>
             </motion.a>
             <motion.a
               href="/photography"
@@ -170,7 +186,14 @@ const LandingPage: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <ShinyText text="Creator" disabled={false} speed={1} />
+              <GradientText
+              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+              animationSpeed={3}
+              showBorder={false}
+              className="custom-class"
+            >
+              Creator
+            </GradientText>
             </motion.a>
           </motion.div>
         </motion.div>
@@ -196,6 +219,7 @@ const LandingPage: React.FC = () => {
           />
         </motion.div>
       </div>
+      </ClickSpark>
     </div>
   );
 };
