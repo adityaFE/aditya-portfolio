@@ -9,7 +9,8 @@ const app = express();
 
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://portfolio-adityafe.netlify.app/' , // Production Netlify frontend
+  'https://portfolio-adityafe.netlify.app/',
+  'https://heartfelt-brigadeiros-1ab593.netlify.app',
   process.env.FRONTEND_URL,
 ].filter(Boolean);
 
