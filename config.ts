@@ -3,4 +3,4 @@ export const IS_DEVELOPMENT = import.meta.env.VITE_ENVIRONMENT === 'development'
 
 export const FRONTEND_URL = IS_DEVELOPMENT
   ? 'http://localhost:3000'
-  : 'https://portfolio-adityafe.netlify.app/';
+  : 'https://portfolio-adityafe.netlify.app';
