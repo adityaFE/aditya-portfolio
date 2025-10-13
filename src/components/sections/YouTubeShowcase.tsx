@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
 import { AnimatedCounter } from "../AnimatedCounter";
 import { Carousel } from "../Carousel";
-import {API_BASE_URL} from '../../../config';
+import {API_BASE_URL} from '../../config';
 import { useEffect, useState } from "react";
 
 interface Video {
