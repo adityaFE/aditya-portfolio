@@ -5,6 +5,7 @@ import { Code, Home,  Sparkles } from "lucide-react";
 import ClickSpark from "../../react-bits/ClickSpark/ClickSpark";
 import { Link } from "wouter";
 
+const shouldShowCreator = false
 const Photography = () => {
   return (
     <div className="min-h-screen bg-background overflow-hidden">
@@ -54,10 +55,16 @@ const Photography = () => {
             </div>
           </header>
 
-          <main className="container mx-auto px-4 pb-20 space-y-20">
+          {shouldShowCreator ?<main className="container mx-auto px-4 pb-20 space-y-20">
             <YouTubeShowcase />
             <InstagramShowcase />
-          </main>
+          </main>:
+          <div>
+            <p className="text-muted-foreground text-xl md:text-2xl max-w-3xl mx-auto font-light">
+                This is a work in progress. Check back soon for more updates!
+              </p>
+          </div>
+            }
 
           <footer className="container mx-auto px-4 py-12 text-center">
             <div className="inline-block px-6 py-3 rounded-full bg-card/30 backdrop-blur-xl border border-primary/20">

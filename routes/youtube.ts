@@ -167,7 +167,7 @@ router.get("/", async (req, res) => {
     }
 
     const channelInfo = channelData.items[0];
-    const channelName = channelInfo.snippet.title;
+    const channelName = channelInfo.snippet?.title;
     const stats = channelInfo.statistics;
 
     const videosRes = await fetch(
@@ -175,9 +175,9 @@ router.get("/", async (req, res) => {
     );
     const videosData = (await videosRes.json()) as VideosDataType
 
-    const videoIds = videosData.items
-      .filter((item) => item.id.videoId)
-      .map((item) => item.id.videoId)
+    const videoIds = videosData?.items
+      .filter((item) => item.id?.videoId)
+      .map((item) => item.id?.videoId)
       .join(",");
 
     const statsRes = await fetch(
@@ -187,9 +187,9 @@ router.get("/", async (req, res) => {
 
     const videos = statsData.items.map((item) => ({
       id: item.id,
-      title: item.snippet.title,
-      views: item.statistics.viewCount,
-      likes: item.statistics.likeCount,
+      title: item.snippet?.title,
+      views: item.statistics?.viewCount,
+      likes: item.statistics?.likeCount,
       thumbnail: item.snippet?.thumbnails?.high?.url,
     }));
 
