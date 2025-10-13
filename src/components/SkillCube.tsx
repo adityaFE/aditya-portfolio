@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { motion } from 'framer-motion';
 
 interface SkillCubeProps {
   icon: React.ComponentType;
@@ -80,7 +79,7 @@ export default function SkillCube({ icon: Icon, color }: SkillCubeProps) {
     <div className="relative w-20 h-20">
       <div ref={containerRef} className="absolute inset-0" />
       <div className="absolute inset-0 flex items-center justify-center">
-        <Icon className="w-8 h-8 text-white" />
+        <Icon  />
       </div>
     </div>
   );

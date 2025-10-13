@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Skills from "@/components/sections/Skills";
@@ -9,6 +9,7 @@ import Contact from "@/components/sections/Contact";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ClickSpark from "../../react-bits/ClickSpark/ClickSpark";
+import { MouseFollower } from "@/components/MouseFollower";
 
 export default function Technical() {
   const [visitCount, setVisitCount] = useState(0);
@@ -41,6 +42,7 @@ export default function Technical() {
 
   return (
     <div className="min-h-screen flex flex-col justify-between bg-gray-900 text-white">
+      <MouseFollower />
       
       <div>
         <ClickSpark

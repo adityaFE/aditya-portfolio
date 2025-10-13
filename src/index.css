@@ -2,6 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer base {
+  :root {
+    --background: 260 40% 4%;
+    --foreground: 280 20% 95%;
+
+    --card: 260 30% 8%;
+    --card-foreground: 280 20% 95%;
+
+    --popover: 260 30% 8%;
+    --popover-foreground: 280 20% 95%;
+
+    --primary: 270 91% 65%;
+    --primary-foreground: 280 20% 95%;
+
+    --secondary: 280 60% 50%;
+    --secondary-foreground: 280 20% 95%;
+
+    --muted: 260 30% 15%;
+    --muted-foreground: 280 20% 65%;
+
+    --accent: 330 81% 60%;
+    --accent-foreground: 280 20% 95%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 280 20% 95%;
+
+    --border: 270 40% 20%;
+    --input: 270 40% 20%;
+    --ring: 270 91% 65%;
+
+    --radius: 0.75rem;
+
+    --neon-purple: 270 91% 65%;
+    --neon-pink: 330 81% 60%;
+    --dark-bg: 260 40% 4%;
+    --glass-bg: 260 30% 8%;
+    
+    --gradient-primary: linear-gradient(135deg, hsl(270 91% 65% / 0.8), hsl(330 81% 60% / 0.8));
+    --gradient-bg: linear-gradient(180deg, hsl(260 40% 4%), hsl(260 40% 6%));
+    
+    --glow-purple: 0 0 20px hsl(270 91% 65% / 0.5), 0 0 40px hsl(270 91% 65% / 0.3);
+    --glow-pink: 0 0 20px hsl(330 81% 60% / 0.5), 0 0 40px hsl(330 81% 60% / 0.3);
+    --shadow-card: 0 10px 40px hsl(270 91% 65% / 0.1);
+  }
+}
 @layer base {
   * {
     @apply border-border;
@@ -10,6 +56,14 @@
   body {
     @apply antialiased bg-background text-foreground;
     font-family: monospace;
+  }
+}
+
+@layer utilities {
+  @keyframes shimmer {
+    to {
+      background-position: 200% center;
+    }
   }
 }
 

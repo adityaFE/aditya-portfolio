@@ -8,15 +8,6 @@ import ShinyText from "../../../react-bits/ShinyText/ShinyText";
 export default function Hero() {
   const constraintsRef = useRef(null);
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: ["easeOut"] },
-    },
-  };
-
   const letterAnimation = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0 },
@@ -101,7 +92,14 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <ShinyText text="Get in Touch" disabled={false} speed={1} />
+               <GradientText
+              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+              animationSpeed={3}
+              showBorder={false}
+              className="custom-class"
+            >
+              Get in Touch
+            </GradientText>
             </motion.a>
             <motion.a
               href="#projects"
@@ -109,7 +107,14 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <ShinyText text="View Projects" disabled={false} speed={1} />
+              <GradientText
+              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+              animationSpeed={3}
+              showBorder={false}
+              className="custom-class"
+            >
+              Get in Touch
+            </GradientText>
             </motion.a>
             <motion.a
               href="https://drive.google.com/file/d/1DuHGcvIQ12FRXs838466UtoGx07PoU1X/view?usp=drive_link"
@@ -120,7 +125,14 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <ShinyText text="Download CV" disabled={false} speed={1} />
+              <GradientText
+              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+              animationSpeed={3}
+              showBorder={false}
+              className="custom-class"
+            >
+              Download CV
+            </GradientText>
             </motion.a>
           </motion.div>
 
