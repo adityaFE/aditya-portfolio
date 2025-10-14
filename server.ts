@@ -7,23 +7,27 @@ dotenv.config();
 
 const app = express();
 
-// const corsOptions = {
-//   origin: '*', 
-//   credentials: true,
-//   optionsSuccessStatus: 200,
-// };
+const allowedOrigins = [
+   'http://localhost:3000',
+  'https://portfolio-adityafe.netlify.app'
+].filter(Boolean);
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || /\.netlify\.app$/.test(origin) || /localhost/.test(origin)) {
+const corsOptions = {
+  origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      console.error('Blocked by CORS:', origin);
+      console.warn('Origin not allowed by CORS:', origin);
       callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true,
-}));
+  optionsSuccessStatus: 200
+};
+
+// Middleware
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
