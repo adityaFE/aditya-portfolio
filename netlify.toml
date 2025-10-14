@@ -1,8 +1,14 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
+[build.environment]
+  NODE_VERSION = "18"
 
 # Enable CORS headers for all routes
 [[headers]]

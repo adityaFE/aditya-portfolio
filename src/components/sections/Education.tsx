@@ -18,7 +18,6 @@ const education = [
       "Completed High School with a focus on Science and Maths",
   }
 ];
-console.log(education)
 
 export default function Education() {
   return (
