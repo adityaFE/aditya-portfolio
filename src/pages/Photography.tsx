@@ -5,7 +5,7 @@ import { Code, Home,  Sparkles } from "lucide-react";
 import ClickSpark from "../../react-bits/ClickSpark/ClickSpark";
 import { Link } from "wouter";
 
-const shouldShowCreator = false
+const shouldShowCreator = true
 const Photography = () => {
   return (
     <div className="min-h-screen bg-background overflow-hidden">
