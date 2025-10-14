@@ -7,15 +7,24 @@ dotenv.config();
 
 const app = express();
 
-const corsOptions = {
-  origin: '*', 
+// const corsOptions = {
+//   origin: '*', 
+//   credentials: true,
+//   optionsSuccessStatus: 200,
+// };
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || /\.netlify\.app$/.test(origin) || /localhost/.test(origin)) {
+      callback(null, true);
+    } else {
+      console.error('Blocked by CORS:', origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
-  optionsSuccessStatus: 200,
-};
+}));
 
-app.use(cors(corsOptions));
-
-app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api/youtube", youtubeRouter);
