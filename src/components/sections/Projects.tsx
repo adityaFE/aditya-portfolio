@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import Carousel from "../../../react-bits/Carousel/Carousel";
+import ProjectReel from "../customComponents/ProjectReel";
 
 const projects = [
   {
@@ -93,29 +92,7 @@ const projects = [
 export default function Projects() {
   return (
     <section id="projects" className="py-20 bg-background/50">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-3xl font-bold mb-8 text-center">
-            Featured Projects
-          </h2>
-          <div className="flex justify-center">
-            <Carousel
-              items={projects}
-              baseWidth={350}
-              autoplay={true}
-              autoplayDelay={4000}
-              pauseOnHover={true}
-              loop={true}
-              round={false}
-            />
-          </div>
-        </motion.div>
-      </div>
+      <ProjectReel projects={projects} />
     </section>
   );
 }
