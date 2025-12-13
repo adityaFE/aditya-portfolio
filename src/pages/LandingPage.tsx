@@ -74,7 +74,7 @@ const LandingPage: React.FC = () => {
               name="Aditya Anand"
               showBehindGradient={true}
               title="Software Engineer & Content Creator"
-              avatarUrl="/Aditya.png"
+              avatarUrl="/20251121_151910.png"
               showUserInfo={true}
               enableTilt={true}
               enableMobileTilt={true}
