@@ -113,7 +113,7 @@ export default function Hero() {
               showBorder={false}
               className="custom-class"
             >
-              Get in Touch
+              Projects
             </GradientText>
             </motion.a>
             <motion.a
