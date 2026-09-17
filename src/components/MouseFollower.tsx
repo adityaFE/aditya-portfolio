@@ -37,7 +37,7 @@ export const MouseFollower = () => {
         <div
           className="w-8 h-8 rounded-full bg-primary/30 blur-xl"
           style={{
-            boxShadow: "0 0 60px 20px hsl(270 91% 65% / 0.6)",
+            boxShadow: "var(--glow-purple)",
           }}
         />
       </div>

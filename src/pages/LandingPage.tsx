@@ -1,43 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "wouter";
 import ProfileCard from "../../react-bits/ProfileCard/ProfileCard";
 import TextType from "../../react-bits/TextType/TextType";
 import GradientText from "../../react-bits/GradientText/GradientText";
-import ShinyText from "../../react-bits/ShinyText/ShinyText";
 import "../index.css";
 import ClickSpark from "../../react-bits/ClickSpark/ClickSpark";
 import { MouseFollower } from "@/components/MouseFollower";
-
-const greetings = [
-  { text: "Namaste", lang: "Hindi" },
-  { text: "Hello", lang: "English" },
-  { text: "Hola", lang: "Spanish" },
-  { text: "Bonjour", lang: "French" },
-  { text: "Ciao", lang: "Italian" },
-  { text: "こんにちは", lang: "Japanese" },
-  { text: "안녕하세요", lang: "Korean" },
-  { text: "Olá", lang: "Portuguese" },
-  { text: "Привет", lang: "Russian" },
-  { text: "你好", lang: "Chinese (Mandarin)" },
-  { text: "مرحباً", lang: "Arabic" },
-  { text: "สวัสดี", lang: "Thai" },
-  { text: "Selamat", lang: "Indonesian" },
-  { text: "Habari", lang: "Swahili" },
-  { text: "Guten Tag", lang: "German" },
-  { text: "Hej", lang: "Swedish" },
-  { text: "Kumusta", lang: "Filipino" },
-  { text: "Aloha", lang: "Hawaiian" },
-  { text: "Shalom", lang: "Hebrew" },
-  { text: "Vanakkam", lang: "Tamil" },
-  { text: "Sat Sri Akal", lang: "Punjabi" },
-  { text: "Nomoshkar", lang: "Bengali" },
-  { text: "Adaab", lang: "Urdu" },
-  { text: "Sawubona", lang: "Zulu" },
-];
+import { greetings } from "@/data";
+import { PORTFOLIO_GRADIENT, GRADIENT_ANIMATION_SPEED } from "@/lib/constants";
 
 const LandingPage: React.FC = () => {
   const [index, setIndex] = useState(0);
   const [viewportHeight, setViewportHeight] = useState(0);
+
+  useEffect(() => {
+    document.title = "Aditya Anand";
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -73,7 +52,6 @@ const LandingPage: React.FC = () => {
             <ProfileCard
               name="Aditya Anand"
               showBehindGradient={true}
-              // title="Software Engineer & Content Creator"
               avatarUrl="/aditya-updated-bg.png"
               showUserInfo={true}
               enableTilt={true}
@@ -90,7 +68,7 @@ const LandingPage: React.FC = () => {
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >
-            <span style={{ color: "hsl(241, 85%, 68%)" }}>Scroll Down</span>
+            <span className="text-primary">Scroll Down</span>
             <motion.span
               className="text-xl"
               animate={{ y: [0, 4, 0] }}
@@ -120,7 +98,7 @@ const LandingPage: React.FC = () => {
               >
                 <TextType
                   text={currentGreeting.text}
-                  textColors={["hsl(241, 85%, 68%)"]}
+                  textColors={["hsl(var(--primary))"]}
                   typingSpeed={75}
                   pauseDuration={1500}
                   showCursor={true}
@@ -136,18 +114,18 @@ const LandingPage: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.6 }}
             >
               <GradientText
-                colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-                animationSpeed={3}
+                colors={PORTFOLIO_GRADIENT}
+                animationSpeed={GRADIENT_ANIMATION_SPEED}
                 showBorder={false}
                 className="gradient-text-landing-page"
               >
                 I make pixels move and moments freeze. If it’s not responsive,
                 it’s not mine.
               </GradientText>
-              <br></br>
+              <br />
               <GradientText
-                colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-                animationSpeed={3}
+                colors={PORTFOLIO_GRADIENT}
+                animationSpeed={GRADIENT_ANIMATION_SPEED}
                 showBorder={false}
                 className="gradient-text-landing-page"
               >
@@ -162,48 +140,38 @@ const LandingPage: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.8 }}
             >
-              <motion.a
-                href="/technical"
-                className="bg-secondary text-secondary-foreground px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <GradientText
-                  colors={[
-                    "#40ffaa",
-                    "#4079ff",
-                    "#40ffaa",
-                    "#4079ff",
-                    "#40ffaa",
-                  ]}
-                  animationSpeed={3}
-                  showBorder={false}
-                  className="custom-class"
+              <Link href="/technical">
+                <motion.div
+                  className="bg-secondary text-secondary-foreground px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-300 text-center cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  Technical
-                </GradientText>
-              </motion.a>
-              <motion.a
-                href="/photography"
-                className="bg-secondary text-primary-foreground px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-300 transform hover:scale-105"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <GradientText
-                  colors={[
-                    "#40ffaa",
-                    "#4079ff",
-                    "#40ffaa",
-                    "#4079ff",
-                    "#40ffaa",
-                  ]}
-                  animationSpeed={3}
-                  showBorder={false}
-                  className="custom-class"
+                  <GradientText
+                    colors={PORTFOLIO_GRADIENT}
+                    animationSpeed={GRADIENT_ANIMATION_SPEED}
+                    showBorder={false}
+                    className="custom-class"
+                  >
+                    Technical
+                  </GradientText>
+                </motion.div>
+              </Link>
+              <Link href="/photography">
+                <motion.div
+                  className="bg-secondary text-primary-foreground px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-300 transform hover:scale-105 text-center cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  Creator
-                </GradientText>
-              </motion.a>
+                  <GradientText
+                    colors={PORTFOLIO_GRADIENT}
+                    animationSpeed={GRADIENT_ANIMATION_SPEED}
+                    showBorder={false}
+                    className="custom-class"
+                  >
+                    Creator
+                  </GradientText>
+                </motion.div>
+              </Link>
             </motion.div>
           </motion.div>
 
@@ -216,7 +184,6 @@ const LandingPage: React.FC = () => {
             <ProfileCard
               name="Aditya Anand"
               showBehindGradient={true}
-              // title="Software Engineer & Content Creator"
               avatarUrl="/aditya-updated-bg.png"
               showUserInfo={true}
               behindGradient={`radial-gradient(circle at 30% 30%, hsl(180, 100%, 60%, 0.6), transparent 70%),
