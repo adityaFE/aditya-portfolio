@@ -1,0 +1,182 @@
+import { IconType } from "react-icons";
+import {
+  SiReact,
+  SiTypescript,
+  SiTailwindcss,
+  SiStyledcomponents,
+  SiFramer,
+  SiJavascript,
+  SiVite,
+  SiCss3,
+  SiHtml5,
+  SiGit,
+  SiRedux,
+  SiXstate,
+  SiJest,
+  SiCypress,
+  SiPython,
+  SiNodedotjs,
+  SiMongodb,
+  SiExpress,
+  SiWebpack,
+  SiNextdotjs,
+  SiGithubactions,
+} from "react-icons/si";
+
+export interface Skill {
+  name: string;
+  icon: IconType;
+  level: number;
+  color: string;
+  description: string;
+}
+
+export const skills: Skill[] = [
+  {
+    name: "HTML5",
+    icon: SiHtml5,
+    level: 99,
+    color: "#E34F26",
+    description: "Building semantic and accessible web pages",
+  },
+  {
+    name: "CSS3",
+    icon: SiCss3,
+    level: 98,
+    color: "#1572B6",
+    description: "Crafting visually appealing, responsive designs",
+  },
+  {
+    name: "JavaScript",
+    icon: SiJavascript,
+    level: 98,
+    color: "#F7DF1E",
+    description: "Mastering modern JavaScript for frontend development",
+  },
+  {
+    name: "Python",
+    icon: SiPython,
+    level: 98,
+    color: "#3776AB",
+    description: "Can write code in Python for backend or scripting tasks",
+  },
+  {
+    name: "TypeScript",
+    icon: SiTypescript,
+    level: 92,
+    color: "#3178C6",
+    description: "Developing robust, type-safe applications",
+  },
+  {
+    name: "React.js",
+    icon: SiReact,
+    level: 98,
+    color: "#61DAFB",
+    description: "Building high-performance and scalable web applications",
+  },
+  {
+    name: "Jest",
+    icon: SiJest,
+    level: 90,
+    color: "#C21325",
+    description: "Writing unit and integration tests with high coverage",
+  },
+  {
+    name: "Cypress",
+    icon: SiCypress,
+    level: 88,
+    color: "#17202C",
+    description: "Automating end-to-end testing with BDD integration",
+  },
+  {
+    name: "Vite",
+    icon: SiVite,
+    level: 95,
+    color: "#646CFF",
+    description: "Optimizing build times and HMR for better DX",
+  },
+  {
+    name: "Framer Motion",
+    icon: SiFramer,
+    level: 95,
+    color: "#FF00FF",
+    description: "Creating smooth, interactive UI animations",
+  },
+  {
+    name: "Styled Components",
+    icon: SiStyledcomponents,
+    level: 90,
+    color: "#DB7093",
+    description: "Writing maintainable, dynamic component styles",
+  },
+  {
+    name: "Tailwind CSS",
+    icon: SiTailwindcss,
+    level: 92,
+    color: "#38B2AC",
+    description: "Building modern and responsive UIs efficiently",
+  },
+  {
+    name: "Redux Toolkit",
+    icon: SiRedux,
+    level: 90,
+    color: "#764ABC",
+    description: "Managing complex state in large-scale applications",
+  },
+  {
+    name: "XState",
+    icon: SiXstate,
+    level: 85,
+    color: "#EB5424",
+    description: "Implementing state machines for better logic handling",
+  },
+  {
+    name: "Git",
+    icon: SiGit,
+    level: 95,
+    color: "#F05032",
+    description: "Managing code efficiently with version control",
+  },
+  {
+    name: "Node.js",
+    icon: SiNodedotjs,
+    level: 85,
+    color: "#339933",
+    description: "Building server-side APIs and tooling with JavaScript",
+  },
+  {
+    name: "Express",
+    icon: SiExpress,
+    level: 82,
+    color: "#000000",
+    description: "Creating RESTful APIs and middleware-driven backends",
+  },
+  {
+    name: "MongoDB",
+    icon: SiMongodb,
+    level: 80,
+    color: "#47A248",
+    description: "Designing flexible document-based data models",
+  },
+  {
+    name: "Next.js",
+    icon: SiNextdotjs,
+    level: 80,
+    color: "#000000",
+    description: "Building SSR and SSG React apps with file-based routing",
+  },
+  {
+    name: "Webpack",
+    icon: SiWebpack,
+    level: 82,
+    color: "#8DD6F9",
+    description: "Configuring custom build pipelines and optimizations",
+  },
+  {
+    name: "CI/CD",
+    icon: SiGithubactions,
+    level: 80,
+    color: "#2088FF",
+    description: "Automating builds, tests, and deployments with GitHub Actions",
+  },
+];

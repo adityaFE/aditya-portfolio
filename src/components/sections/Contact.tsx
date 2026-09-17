@@ -51,14 +51,14 @@ export default function Contact() {
     setLoading(true);
     try {
       await emailjs.send(
-        "service_z73xts3",
-        "template_fgjbg4n",
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
           from_name: data.name,
           from_email: data.email,
           message: data.message,
         },
-        "lj8yOkXWBUcPtVU00"
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
       toast({
@@ -123,8 +123,7 @@ export default function Contact() {
                     )}
                   />
 
-                  <form onSubmit={handleSubmit(sendEmail)} noValidate>
-                    <FormField
+                  <FormField
                       control={control}
                       name="email"
                       rules={{
@@ -145,7 +144,7 @@ export default function Contact() {
                                 type="email"
                                 placeholder="Your email"
                                 {...field}
-                                className={`border rounded-md px-3 py-2 w-full bg-background/50 backdrop-blur-sm 
+                                className={`border rounded-md px-3 py-2 w-full bg-background/50 backdrop-blur-sm
                               focus:border-primary focus:ring-1 focus:ring-primary
                               ${
                                 errors.email
@@ -168,7 +167,6 @@ export default function Contact() {
                         </FormItem>
                       )}
                     />
-                  </form>
 
                   <FormField
                     control={control}

@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
-import ThreeScene from "../ThreeScene";
+import ThreeScene from "../three/ThreeScene";
 import SocialButtons from "../SocialButtons";
 import GradientText from "../../../react-bits/GradientText/GradientText";
-import ShinyText from "../../../react-bits/ShinyText/ShinyText";
+import { PORTFOLIO_GRADIENT, GRADIENT_ANIMATION_SPEED } from "@/lib/constants";
 
 export default function Hero() {
   const constraintsRef = useRef(null);
@@ -38,7 +38,7 @@ export default function Hero() {
                 }}
                 className="text-3xl sm:text-5xl font-bold text-primary inline-block"
               >
-                {char === " " ? "\u00A0" : char}
+                {char === " " ? " " : char}
               </motion.span>
             ))}
           </motion.div>
@@ -58,15 +58,15 @@ export default function Hero() {
                 }}
                 className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent inline-block"
               >
-                {char === " " ? "\u00A0" : char}
+                {char === " " ? " " : char}
               </motion.span>
             ))}
           </motion.div>
 
           <p className="text-lg sm:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto backdrop-blur-sm p-4 rounded-lg">
             <GradientText
-              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-              animationSpeed={3}
+              colors={PORTFOLIO_GRADIENT}
+              animationSpeed={GRADIENT_ANIMATION_SPEED}
               showBorder={false}
               className="custom-class"
             >
@@ -92,14 +92,14 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-               <GradientText
-              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-              animationSpeed={3}
-              showBorder={false}
-              className="custom-class"
-            >
-              Get in Touch
-            </GradientText>
+              <GradientText
+                colors={PORTFOLIO_GRADIENT}
+                animationSpeed={GRADIENT_ANIMATION_SPEED}
+                showBorder={false}
+                className="custom-class"
+              >
+                Get in Touch
+              </GradientText>
             </motion.a>
             <motion.a
               href="#projects"
@@ -108,16 +108,16 @@ export default function Hero() {
               whileTap={{ scale: 0.95 }}
             >
               <GradientText
-              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-              animationSpeed={3}
-              showBorder={false}
-              className="custom-class"
-            >
-              Projects
-            </GradientText>
+                colors={PORTFOLIO_GRADIENT}
+                animationSpeed={GRADIENT_ANIMATION_SPEED}
+                showBorder={false}
+                className="custom-class"
+              >
+                Projects
+              </GradientText>
             </motion.a>
             <motion.a
-              href="https://drive.google.com/file/d/1DuHGcvIQ12FRXs838466UtoGx07PoU1X/view?usp=drive_link"
+              href="https://drive.google.com/file/d/18I7BT6WoCizAgM71R4_ePtTGUn-MY0S1/view?usp=drive_link"
               target="_blank"
               rel="noopener noreferrer"
               download
@@ -126,13 +126,13 @@ export default function Hero() {
               whileTap={{ scale: 0.95 }}
             >
               <GradientText
-              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-              animationSpeed={3}
-              showBorder={false}
-              className="custom-class"
-            >
-              Download CV
-            </GradientText>
+                colors={PORTFOLIO_GRADIENT}
+                animationSpeed={GRADIENT_ANIMATION_SPEED}
+                showBorder={false}
+                className="custom-class"
+              >
+                Download CV
+              </GradientText>
             </motion.a>
           </motion.div>
 

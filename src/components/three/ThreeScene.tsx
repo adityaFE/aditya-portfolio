@@ -1,16 +1,25 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { motion } from "framer-motion";
+
+function isWebGLAvailable(): boolean {
+  try {
+    const canvas = document.createElement("canvas");
+    return !!(canvas.getContext("webgl") || canvas.getContext("webgl2"));
+  } catch {
+    return false;
+  }
+}
 
 export default function ThreeScene() {
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<THREE.Scene>();
   const cameraRef = useRef<THREE.PerspectiveCamera>();
   const rendererRef = useRef<THREE.WebGLRenderer>();
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const mousePositionRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !isWebGLAvailable()) return;
 
     // Scene setup
     const scene = new THREE.Scene();
@@ -89,10 +98,10 @@ export default function ThreeScene() {
 
     // Mouse move handler with slower parallax
     const handleMouseMove = (event: MouseEvent) => {
-      setMousePosition({
+      mousePositionRef.current = {
         x: (event.clientX / window.innerWidth) * 2 - 1,
         y: -(event.clientY / window.innerHeight) * 2 + 1,
-      });
+      };
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -109,8 +118,8 @@ export default function ThreeScene() {
         obj.position.y += Math.sin(Date.now() * 0.0005 + i) * 0.002;
 
         // Gentler mouse parallax
-        obj.position.x += (mousePosition.x * 0.005 - obj.position.x) * 0.01;
-        obj.position.z += (mousePosition.y * 0.005 - obj.position.z) * 0.01;
+        obj.position.x += (mousePositionRef.current.x * 0.005 - obj.position.x) * 0.01;
+        obj.position.z += (mousePositionRef.current.y * 0.005 - obj.position.z) * 0.01;
       });
 
       renderer.render(scene, camera);
@@ -141,7 +150,7 @@ export default function ThreeScene() {
         containerRef.current.removeChild(renderer.domElement);
       }
     };
-  }, [mousePosition]);
+  }, []);
 
   return (
     <motion.div
@@ -150,6 +159,9 @@ export default function ThreeScene() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2, ease: "easeOut" }}
+      style={!isWebGLAvailable() ? {
+        background: "linear-gradient(135deg, hsl(260 40% 4%), hsl(270 30% 10%), hsl(260 40% 4%))",
+      } : undefined}
     />
   );
 }

@@ -4,7 +4,7 @@ import ScrambledText from "../../../react-bits/ScrambledText/ScrambledText";
 
 export default function About() {
   const label =
-    " With over 4 years of experience in frontend development, I specialize in building scalable, performant web applications using modern technologies like React, TypeScript, and Three.js. I'm passionate about creating exceptional user experiences and writing clean, maintainable code.";
+    " With over 5 years of experience in frontend development, I specialize in building scalable, performant web applications using modern technologies like React, TypeScript, and Three.js. I'm passionate about creating exceptional user experiences and writing clean, maintainable code.";
 
   return (
     <section

@@ -4,9 +4,11 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Technical from "@/pages/Technical";
-import ParticleBackground from "./components/Particles";
 import LandingPage from "./pages/LandingPage";
 import Photography from "./pages/Photography";
+import React, { Suspense } from "react";
+
+const ParticleBackground = React.lazy(() => import("./components/Particles"));
 
 function Router() {
   return (
@@ -22,7 +24,9 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-        <ParticleBackground />
+        <Suspense fallback={null}>
+          <ParticleBackground />
+        </Suspense>
         <Router />
         <Toaster />
     </QueryClientProvider>

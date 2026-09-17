@@ -1,18 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Camera, Home, Menu, User, X } from "lucide-react";
+import { Camera, Home, Menu, X } from "lucide-react";
 import GooeyNav from "../../../react-bits/GooeyNav/GooeyNav";
 import TrueFocus from "../../../react-bits/TrueFocus/TrueFocus";
-
-const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Education", href: "#education" },
-  { label: "Contact", href: "#contact" },
-];
+import { navItems } from "@/data";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +22,7 @@ export default function Navbar() {
   };
 
   const [activeIndex, setActiveIndex] = useState(getInitialActiveIndex());
-  console.log("Active Index:", activeIndex);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -62,25 +54,27 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-4">
-  <Link
-    href="/"
-    className="flex items-center gap-2 text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent hover:text-accent transition-colors
-              backdrop-blur-md bg-white/5 px-3 py-1.5 rounded-full"
-  >
-    <Home className="w-6 h-6 text-[hsl(270,91%,65%)] group-hover:drop-shadow-[0_0_6px_hsl(270,91%,65%)] transition-all"/>
-  </Link>
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent hover:text-accent transition-colors
+                        backdrop-blur-md bg-white/5 px-3 py-1.5 rounded-full"
+            >
+              <Home className="w-6 h-6 text-primary group-hover:drop-shadow-[0_0_6px_hsl(var(--primary))] transition-all" />
+            </Link>
 
-  <Link href="/photography" className="flex items-center gap-2 text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent hover:text-accent transition-colors
-              backdrop-blur-md bg-white/5 px-3 py-1.5 rounded-full">
-    <Camera className="w-6 h-6 text-[hsl(270,91%,65%)] group-hover:drop-shadow-[0_0_6px_hsl(270,91%,65%)] transition-all" />
-  </Link>
+            <Link
+              href="/photography"
+              className="flex items-center gap-2 text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent hover:text-accent transition-colors
+                        backdrop-blur-md bg-white/5 px-3 py-1.5 rounded-full"
+            >
+              <Camera className="w-6 h-6 text-primary group-hover:drop-shadow-[0_0_6px_hsl(var(--primary))] transition-all" />
+            </Link>
+          </div>
 
-
-</div>
           <div className="hidden md:flex space-x-4">
             <GooeyNav
               items={navItems}
-              initialActiveIndex={activeIndex} // pass initial active tab index
+              initialActiveIndex={activeIndex}
               particleCount={15}
               particleDistances={[90, 10]}
               particleR={100}

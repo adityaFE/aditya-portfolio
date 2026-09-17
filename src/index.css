@@ -39,13 +39,18 @@
     --neon-pink: 330 81% 60%;
     --dark-bg: 260 40% 4%;
     --glass-bg: 260 30% 8%;
-    
+
     --gradient-primary: linear-gradient(135deg, hsl(270 91% 65% / 0.8), hsl(330 81% 60% / 0.8));
     --gradient-bg: linear-gradient(180deg, hsl(260 40% 4%), hsl(260 40% 6%));
-    
+
     --glow-purple: 0 0 20px hsl(270 91% 65% / 0.5), 0 0 40px hsl(270 91% 65% / 0.3);
     --glow-pink: 0 0 20px hsl(330 81% 60% / 0.5), 0 0 40px hsl(330 81% 60% / 0.3);
     --shadow-card: 0 10px 40px hsl(270 91% 65% / 0.1);
+
+    /* Portfolio gradient colors */
+    --gradient-green: #40ffaa;
+    --gradient-blue: #4079ff;
+    --primary-purple: hsl(270, 91%, 65%);
   }
 }
 @layer base {
@@ -69,4 +74,22 @@
 
 .gradient-text-landing-page{
   font-size: 1.2rem;
+}
+
+/* Accessibility: reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Accessibility: visible focus styles for keyboard navigation */
+:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
 }
