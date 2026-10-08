@@ -74,3 +74,28 @@ npm run lint
 # Format code
 npm run format
 ```
+
+## AI Design Skills (Optional)
+
+This repository uses [taste-skill](https://github.com/Leonxlnx/taste-skill) to guide AI coding assistants (Claude Code, Cursor, Codex, Copilot, etc.) with anti-slop, intentional design guidelines for frontend and UI generation.
+
+### Installation on a New Machine
+
+Run this command inside the project root:
+
+```bash
+# Install all skills
+npx skills add https://github.com/Leonxlnx/taste-skill
+
+# Or install only specific skills (e.g., default v2 frontend taste skill)
+npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend"
+```
+
+### Usage with AI Assistants
+
+Once installed, AI coding agents automatically detect and follow the skills when designing or refactoring UI components. Example prompts:
+
+- **Custom UI Generation:** `"Redesign the hero section using design-taste-frontend with DESIGN_VARIANCE=7, MOTION_INTENSITY=5, VISUAL_DENSITY=4"`
+- **Minimalist / Linear Aesthetic:** `"Revamp the projects section using minimalist-ui"`
+- **Audit & Redesign Existing UI:** `"Audit and improve the contact section using redesign-existing-projects"`
+
