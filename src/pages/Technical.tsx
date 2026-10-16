@@ -13,11 +13,11 @@ import { MouseFollower } from "@/components/MouseFollower";
 
 export default function Technical() {
   useEffect(() => {
-    document.title = "Aditya Anand | Frontend Developer";
+    document.title = "Aditya Anand | Senior Frontend Engineer & Creative Developer";
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-gray-900 text-white">
+    <div className="min-h-screen flex flex-col justify-between bg-background text-foreground relative overflow-x-hidden selection:bg-primary/20 selection:text-primary">
       <MouseFollower />
 
       <div>
@@ -29,13 +29,15 @@ export default function Technical() {
           duration={400}
         >
           <Navbar />
-          <Hero />
-          <About />
-          <Skills />
-          <Experience />
-          <Projects />
-          <Education />
-          <Contact />
+          <main id="main-content">
+            <Hero />
+            <About />
+            <Skills />
+            <Experience />
+            <Projects />
+            <Education />
+            <Contact />
+          </main>
         </ClickSpark>
       </div>
 

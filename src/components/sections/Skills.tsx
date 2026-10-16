@@ -1,26 +1,39 @@
+import { motion } from "framer-motion";
 import SkillReel from "../SkillReel";
 import { skills } from "@/data";
+import { Sparkles } from "lucide-react";
 
 export default function Skills() {
   return (
     <section
       id="skills"
-      className="py-20 bg-gradient-to-b from-background via-background/95 to-background relative overflow-hidden"
+      className="py-24 bg-background relative overflow-hidden scroll-mt-24"
+      aria-label="Technical Skills and Stack"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold mb-12 text-center bg-gradient-to-r from-primary/80 to-primary bg-clip-text text-transparent">
-          Technical Skills
-        </h2>
-        <SkillReel skills={skills} speed={40} />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-[11px] font-mono tracking-[0.25em] uppercase mb-4 shadow-[0_0_12px_rgba(168,85,247,0.15)]">
+            <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+            Capabilities // Tooling & Stack
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground [text-wrap:balance]">
+            Technical Stack
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto [text-wrap:balance]">
+            Modern technologies and precision engineering practices leveraged to ship fast, accessible, and resilient applications.
+          </p>
+        </motion.div>
 
-        {/* Background gradient orbs */}
-        <div className="absolute inset-0 -z-10 opacity-30">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-          <div
-            className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"
-            style={{ animationDelay: "1s" }}
-          />
-        </div>
+        <SkillReel skills={skills} speed={35} />
+
+        {/* Subtle ambient lighting */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-3xl pointer-events-none -z-10" aria-hidden="true" />
       </div>
     </section>
   );

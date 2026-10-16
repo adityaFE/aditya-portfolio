@@ -74,8 +74,8 @@ export const YouTubeShowcase = () => {
 
   if (isLoading || !data) {
     return (
-      <div className="w-full h-64 flex flex-col items-center justify-center text-2xl font-bold text-primary animate-pulse">
-        <span>Loading Magic...</span>
+      <div className="w-full h-64 flex flex-col items-center justify-center text-2xl font-bold text-primary animate-pulse" role="status" aria-live="polite">
+        <span>Loading Magic…</span>
         {slowWarning && (
           <span className="text-sm font-medium text-muted-foreground mt-2 text-center">
             Our free server might take a minute to wake up, please hang tight!

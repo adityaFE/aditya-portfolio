@@ -1,45 +1,45 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import SkillCube from "./three/SkillCube";
-import { Progress } from "@/components/ui/progress";
 import InfiniteReel from "./shared/InfiniteReel";
 import { Skill } from "@/data";
+import { Badge } from "@/components/ui/badge";
 
 interface SkillReelProps {
   skills: Skill[];
   speed?: number;
 }
 
-const CARD_WIDTH = 260;
-const GAP = 24;
+const CARD_WIDTH = 280;
+const GAP = 20;
 
-export default function SkillReel({ skills, speed = 60 }: SkillReelProps) {
+export default function SkillReel({ skills, speed = 40 }: SkillReelProps) {
   return (
     <InfiniteReel<Skill>
       items={skills}
       speed={speed}
       cardWidth={CARD_WIDTH}
       gap={GAP}
-      className="py-8 bg-background"
+      className="py-4"
       renderItem={(skill) => (
-        <Card className="h-full bg-background/80 border-primary/30 shadow-md hover:shadow-lg transition-shadow">
-          <CardContent className="p-6 flex flex-col items-center">
+        <Card className="group h-full bg-card/40 backdrop-blur-md border border-white/10 hover:border-primary/50 transition-[border-color,box-shadow] duration-300 rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-primary/5">
+          <CardContent className="p-6 flex flex-col items-center text-center">
             <SkillCube icon={skill.icon} color={skill.color} />
-            <h3 className="text-lg font-semibold mt-4 bg-gradient-to-r from-primary/90 to-primary bg-clip-text text-transparent text-center">
-              {skill.name}
-            </h3>
+            <div className="mt-4 flex items-center gap-2">
+              <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
+                {skill.name}
+              </h3>
+            </div>
+            <Badge
+              variant="outline"
+              className="mt-2 text-[10px] px-2 py-0.5 border-white/10 text-muted-foreground font-mono"
+            >
+              {skill.category}
+            </Badge>
             {skill.description && (
-              <p className="text-xs text-foreground/70 mt-2 text-center">
+              <p className="text-xs text-muted-foreground mt-3 leading-relaxed line-clamp-2">
                 {skill.description}
               </p>
-            )}
-            {typeof skill.level === "number" && (
-              <div className="w-full mt-4">
-                <Progress value={skill.level} className="h-2 bg-primary/10" />
-                <p className="text-xs text-foreground/60 mt-1 text-center">
-                  {skill.level}% proficiency
-                </p>
-              </div>
             )}
           </CardContent>
         </Card>

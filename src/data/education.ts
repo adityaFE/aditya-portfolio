@@ -7,16 +7,16 @@ export interface Education {
 
 export const education: Education[] = [
   {
-    degree: "Bachelor of Technology",
+    degree: "Bachelor of Technology in Information Technology",
     institution: "Heritage Institute of Technology",
-    period: "2017 - 2021",
+    period: "2017 – 2021",
     description:
-      "Bachelor's degree in Information Technology with a focus on Web Development",
+      "Comprehensive study of Computer Science fundamentals, Algorithms, Data Structures, Web Engineering, and Software Architecture.",
   },
   {
-    degree: "High School",
+    degree: "Senior Secondary School Certificate (ISC - Class XII)",
     institution: "Don Bosco Academy",
-    period: "2014 - 2016",
-    description: "Completed High School with a focus on Science and Maths",
+    period: "2014 – 2016",
+    description: "Specialized in Computer Science, Mathematics, and Physics with high academic distinction.",
   },
 ];
