@@ -64,7 +64,7 @@ export default function Contact() {
     } catch (error) {
       toast({
         title: "Error Sending Message",
-        description: "Unable to deliver message right now. Please email directly at anand.aditya2107@gmail.com",
+        description: "Unable to deliver message right now. Please email directly at adityaanandofficial@gmail.com",
         variant: "destructive",
       });
     } finally {
@@ -116,15 +116,15 @@ export default function Contact() {
 
             <div className="space-y-4 pt-4 border-t border-white/5">
               <a
-                href="mailto:anand.aditya2107@gmail.com"
+                href="mailto:adityaanandofficial@gmail.com"
                 className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 transition-[background-color,border-color,color] duration-200 text-sm text-muted-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
-                aria-label="Email Aditya at anand.aditya2107@gmail.com"
+                aria-label="Email Aditya at adityaanandofficial@gmail.com"
               >
                 <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary" aria-hidden="true">
                   <Mail className="w-4 h-4" />
                 </div>
                 <span className="font-mono text-xs sm:text-sm truncate">
-                  anand.aditya2107@gmail.com
+                  adityaanandofficial@gmail.com
                 </span>
               </a>
 
