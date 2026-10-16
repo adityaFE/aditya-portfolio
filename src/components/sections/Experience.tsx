@@ -1,224 +1,106 @@
 import { motion } from "framer-motion";
-import { CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import Card3D from "../Card3D";
-import ScrambledText from "../../../react-bits/ScrambledText/ScrambledText";
-import { useState, useRef, useEffect } from "react";
+import { Briefcase, Calendar, MapPin, CheckCircle2 } from "lucide-react";
 import { experiences } from "@/data";
 
 export default function Experience() {
-  // Move carousel state outside the map to avoid React hook issues
-  const [descIndexes, setDescIndexes] = useState(experiences.map(() => 0));
-  const [direction, setDirection] = useState(0); // -1 for left, 1 for right, 0 for initial
-  const [resetAnim, setResetAnim] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-
-  // Refs to store interval IDs for each carousel
-  const intervalRefs = useRef<(NodeJS.Timeout | null)[]>(
-    experiences.map(() => null)
-  );
-
-  // Auto-advance carousel for each experience
-  useEffect(() => {
-    experiences.forEach((exp, expIdx) => {
-      if (intervalRefs.current[expIdx]) {
-        clearInterval(intervalRefs.current[expIdx]!);
-      }
-      if (!isPaused) {
-        intervalRefs.current[expIdx] = setInterval(() => {
-          setDirection(1);
-          setDescIndexes((prev) =>
-            prev.map((val, idx) => {
-              if (idx === expIdx) {
-                if (val === exp.description.length - 1) {
-                  setResetAnim(true);
-                  return 0;
-                }
-                return val + 1;
-              }
-              return val;
-            })
-          );
-        }, 4000);
-      }
-    });
-    return () => {
-      intervalRefs.current.forEach((interval) => {
-        if (interval) clearInterval(interval);
-      });
-    };
-  }, [isPaused, experiences.length]);
-
-  const handlePrev = (expIdx: number) => {
-    setDirection(-1);
-    setDescIndexes((prev) =>
-      prev.map((val, idx) =>
-        idx === expIdx
-          ? val === 0
-            ? experiences[expIdx].description.length - 1
-            : val - 1
-          : val
-      )
-    );
-    setResetAnim(false);
-  };
-
-  const handleNext = (expIdx: number) => {
-    setDirection(1);
-    setDescIndexes((prev) =>
-      prev.map((val, idx) => {
-        if (idx === expIdx) {
-          if (val === experiences[expIdx].description.length - 1) {
-            setResetAnim(true);
-            return 0;
-          }
-          return val + 1;
-        }
-        return val;
-      })
-    );
-  };
-
   return (
     <section
       id="experience"
-      className="py-20 bg-gradient-to-b from-background via-background/95 to-background relative overflow-hidden"
+      className="py-24 bg-background relative overflow-hidden scroll-mt-24"
+      aria-label="Work Experience & Career Journey"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl font-bold mb-12 text-center bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-[11px] font-mono tracking-[0.25em] uppercase mb-4 shadow-[0_0_12px_rgba(168,85,247,0.15)]">
+            <Briefcase className="w-3.5 h-3.5" aria-hidden="true" />
+            Chronology // Career Timeline
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground [text-wrap:balance]">
             Work Experience
           </h2>
-
-          <div className="space-y-8 mt-12">
-            {experiences.map((exp, index) => {
-              const descIndex = descIndexes[index];
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
-                >
-                  <Card3D>
-                    <CardContent className="p-8">
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                        <div>
-                          <h3 className="text-2xl font-semibold bg-gradient-to-r from-primary/90 to-primary bg-clip-text text-transparent">
-                            {exp.company}
-                          </h3>
-                          <p className="text-lg text-primary/80 font-medium mt-1">
-                            {exp.role}
-                          </p>
-                        </div>
-                        <Badge variant="outline" className="mt-2 md:mt-0">
-                          {exp.period}
-                        </Badge>
-                      </div>
-
-                      {/* Description Carousel with Animation and Full Width */}
-                      <div
-                        className="relative flex items-center justify-center mb-6 w-full"
-                        onMouseEnter={() => setIsPaused(true)}
-                        onMouseLeave={() => setIsPaused(false)}
-                      >
-                        <button
-                          className="absolute left-0 top-1/2 -translate-y-1/2 bg-primary/10 hover:bg-primary/20 rounded-full p-2 transition-colors disabled:opacity-50"
-                          onClick={() => handlePrev(index)}
-                          aria-label="Previous"
-                          disabled={exp.description.length <= 1}
-                        >
-                          <span className="text-xl">&#8592;</span>
-                        </button>
-                        <div className="flex-1 px-2 sm:px-8 text-center overflow-hidden w-full">
-                          <motion.div
-                            className="p-4"
-                            key={descIndex}
-                            initial={{
-                              x:
-                                direction === 0
-                                  ? 0
-                                  : direction === 1
-                                  ? 100
-                                  : -100,
-                              opacity: 0,
-                            }}
-                            animate={{
-                              x: 0,
-                              opacity: 1,
-                            }}
-                            exit={{
-                              x:
-                                direction === 1
-                                  ? -100
-                                  : direction === -1
-                                  ? 100
-                                  : 0,
-                              opacity: 0,
-                            }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 300,
-                              damping: 30,
-                              duration: resetAnim ? 0.5 : 0.4,
-                            }}
-                          >
-                            <ScrambledText
-                              className="text-foreground/80 leading-relaxed text-sm m-0"
-                              radius={100}
-                              duration={1.2}
-                              speed={0.5}
-                              scrambleChars=":*"
-                            >
-                              {exp.description[descIndex]}
-                            </ScrambledText>
-                          </motion.div>
-                        </div>
-                        <button
-                          className="absolute right-0 top-1/2 -translate-y-1/2 bg-primary/10 hover:bg-primary/20 rounded-full p-2 transition-colors disabled:opacity-50"
-                          onClick={() => handleNext(index)}
-                          aria-label="Next"
-                          disabled={exp.description.length <= 1}
-                        >
-                          <span className="text-xl">&#8594;</span>
-                        </button>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {exp.technologies.map((tech) => (
-                          <Badge
-                            key={tech}
-                            variant="secondary"
-                            className="bg-primary/10 text-primary hover:bg-primary/20"
-                          >
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card3D>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Background gradient effects */}
-          <div className="absolute inset-0 -z-10 opacity-30">
-            <div
-              className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"
-              style={{ animationDuration: "4s" }}
-            />
-            <div
-              className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"
-              style={{ animationDuration: "6s", animationDelay: "2s" }}
-            />
-          </div>
+          <p className="mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto [text-wrap:balance]">
+            Demonstrated history of engineering high-impact web products, scaling frontend architectures, and collaborating across cross-functional teams.
+          </p>
         </motion.div>
+
+        {/* Vertical Timeline */}
+        <div className="relative border-l border-white/10 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-12">
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={exp.company + exp.period}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className="relative group"
+            >
+              {/* Timeline marker */}
+              <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-background border-2 border-primary group-hover:bg-primary group-hover:scale-125 transition-[transform,background-color] duration-300 shadow-lg shadow-primary/30" aria-hidden="true" />
+
+              {/* Card content */}
+              <div className="rounded-2xl bg-card/40 border border-white/10 hover:border-primary/40 backdrop-blur-md p-6 sm:p-8 transition-[border-color,box-shadow] duration-300 hover:shadow-xl hover:shadow-primary/5">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+                      {exp.role}
+                    </h3>
+                    <p className="text-base sm:text-lg font-medium text-accent mt-0.5">
+                      {exp.company}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2">
+                    {exp.location && (
+                      <span className="inline-flex items-center gap-1 text-xs font-mono text-muted-foreground">
+                        <MapPin className="w-3 h-3 text-muted-foreground/80" aria-hidden="true" />
+                        {exp.location}
+                      </span>
+                    )}
+                    <Badge
+                      variant="outline"
+                      className="text-xs font-mono px-2.5 py-1 bg-primary/10 text-primary border-primary/20 tabular-nums"
+                    >
+                      <Calendar className="w-3 h-3 mr-1 inline" aria-hidden="true" />
+                      {exp.period}
+                    </Badge>
+                  </div>
+                </div>
+
+                {/* Bullets */}
+                <ul className="space-y-3 my-6">
+                  {exp.description.map((bullet, bIdx) => (
+                    <li
+                      key={bIdx}
+                      className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed"
+                    >
+                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5 opacity-80" aria-hidden="true" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Technologies */}
+                <div className="pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                  {exp.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="text-xs font-mono px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-muted-foreground group-hover:border-white/10 transition-colors"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
