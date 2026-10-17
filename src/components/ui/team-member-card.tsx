@@ -72,7 +72,7 @@ export default function TeamMemberCard({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className={cn(
-            'relative h-[500px] w-[360px] shrink-0 overflow-hidden',
+            'relative h-[1000px] w-[360px] shrink-0 overflow-hidden',
             isPositionRight && 'order-1'
           )}
         >

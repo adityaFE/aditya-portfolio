@@ -73,7 +73,7 @@ const LandingPage: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="w-full max-w-sm" style={{ height: "500px" }}>
+              <div className="w-full max-w-sm" style={{ height: "600px" }}>
                 <Lanyard
                   frontImage="/Screenshot 2026-10-17 at 06.45.19.png"
                   cardColor="#ffffff"
@@ -199,7 +199,7 @@ const LandingPage: React.FC = () => {
                 initial={{ opacity: 0, x: -40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
-                style={{ height: "800px" }}
+                style={{ height: "1000px" }}
               >
                 <Lanyard
                   frontImage="/Screenshot 2026-10-17 at 06.45.19.png"
@@ -276,14 +276,14 @@ const LandingPage: React.FC = () => {
 
                 {/* CTA Buttons */}
                 <motion.div
-                  className="flex gap-4 pt-4"
+                  className="flex flex-col gap-3 pt-4"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
                 >
                   <Link href="/technical">
                     <motion.button
-                      className={`inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-foreground text-background ${geomSansClasses.subheading} text-base hover:opacity-90 transition-opacity duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
+                      className={`w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-foreground text-background ${geomSansClasses.subheading} text-base hover:opacity-90 transition-opacity duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.95 }}
                       transition={springTransition}
@@ -296,7 +296,7 @@ const LandingPage: React.FC = () => {
 
                   <Link href="/photography">
                     <motion.button
-                      className={`inline-flex items-center gap-2 px-8 py-4 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900/50 text-foreground ${geomSansClasses.subheading} text-base transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
+                      className={`w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900/50 text-foreground ${geomSansClasses.subheading} text-base transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.95 }}
                       transition={springTransition}
@@ -327,15 +327,15 @@ const LandingPage: React.FC = () => {
             transition={{ delay: 1, duration: 0.8 }}
             aria-hidden="true"
           >
-            <span className={`text-xs font-mono uppercase tracking-widest ${geomSansClasses.badge}`}>
+            {/* <span className={`text-xs font-mono uppercase tracking-widest ${geomSansClasses.badge}`}>
               Scroll
-            </span>
-            <motion.div
+            </span> */}
+            {/* <motion.div
               animate={{ y: [0, 6, 0] }}
               transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
             >
               <ArrowDown className="w-4 h-4" />
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </section>
 
@@ -371,17 +371,17 @@ const LandingPage: React.FC = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Video Player - Replace with your actual video file path */}
-                <video
+                {/* <video
                   ref={videoRef}
                   src="https://via.placeholder.com/1920x1080?text=Your+10s+Intro+Video"
                   controls
                   autoPlay
                   muted
                   className="w-full h-full"
-                />
+                /> */}
 
                 {/* Close Button */}
-                <motion.button
+                {/* <motion.button
                   className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors duration-200"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -389,7 +389,7 @@ const LandingPage: React.FC = () => {
                   aria-label="Close video"
                 >
                   <X className="w-6 h-6" />
-                </motion.button>
+                </motion.button> */}
               </motion.div>
             </motion.div>
           )}
