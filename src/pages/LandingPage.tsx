@@ -93,7 +93,7 @@ const LandingPage: React.FC = () => {
                   cornerRadius={0.2}
                   size={0.9}
                   anchor="center"
-                  strapLength={0.5}
+                  strapLength={0.2}
                   strapColor="#111111"
                   metal="silver"
                   gravity={0.8}
@@ -111,10 +111,10 @@ const LandingPage: React.FC = () => {
             <AnimatePresence>
               {!hasScrolled && (
                 <motion.div
-                  className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
+                  className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
                   transition={{ delay: 2.5, duration: 0.6 }}
                 >
                   <span className={`text-xs text-muted-foreground/60 uppercase tracking-widest ${geomSansClasses.badge}`}>
@@ -135,7 +135,7 @@ const LandingPage: React.FC = () => {
           {/* Mobile Content Section - Below Hero */}
           <section className="w-full md:hidden relative py-12 px-4">
             <motion.div
-              className="w-full flex flex-col justify-start space-y-6 max-w-sm mx-auto"
+              className="w-full flex flex-col items-center text-center space-y-6 max-w-sm mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -145,7 +145,7 @@ const LandingPage: React.FC = () => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-300 dark:border-neutral-700 bg-neutral-50/50 dark:bg-neutral-900/50 text-neutral-700 dark:text-neutral-300 text-xs ${geomSansClasses.badge} w-max`}
+                className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-300 dark:border-neutral-700 bg-neutral-50/50 dark:bg-neutral-900/50 text-black dark:text-white text-xs ${geomSansClasses.badge} w-max`}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <span>Available Now</span>
@@ -185,17 +185,6 @@ const LandingPage: React.FC = () => {
                 technical rigor meets visual precision.
               </motion.p>
 
-              {/* Bio Note */}
-              <motion.p
-                className={`text-sm text-muted-foreground/70 leading-relaxed [text-wrap:balance] italic ${geomSansClasses.body}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.35 }}
-              >
-                I make pixels move and moments freeze. If it's not responsive, it's not mine.
-                <br />
-                <span className="text-xs text-muted-foreground/50">Warning: I may start explaining aperture or React hooks unprovoked.</span>
-              </motion.p>
 
               {/* CTA Buttons */}
               <motion.div
@@ -218,7 +207,7 @@ const LandingPage: React.FC = () => {
 
                 <Link href="/photography">
                   <motion.button
-                    className={`w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900/50 text-foreground ${geomSansClasses.subheading} text-sm transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
+                    className={`w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-transparent hover:opacity-90 text-foreground ${geomSansClasses.subheading} text-sm transition-opacity duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
                     whileHover={{ scale: 0.98 }}
                     whileTap={{ scale: 0.95 }}
                     aria-label="View my photography"
@@ -240,7 +229,7 @@ const LandingPage: React.FC = () => {
           </section>
 
           {/* Desktop Layout: Centered with Lanyard and Text */}
-          <section className="relative w-full py-20">
+          <section className="relative w-full">
             <div className="hidden md:flex w-full h-full items-center justify-center px-6 lg:px-8 py-20">
               <div className="w-full max-w-7xl grid grid-cols-2 gap-16 items-center">
                 {/* Left: Lanyard Interactive Card */}
@@ -259,7 +248,7 @@ const LandingPage: React.FC = () => {
                     cornerRadius={0.2}
                     size={0.85}
                     anchor="center"
-                    strapLength={0.6}
+                    strapLength={0.2}
                     strapColor="#111111"
                     metal="silver"
                     gravity={1}
@@ -284,7 +273,7 @@ const LandingPage: React.FC = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-300 dark:border-neutral-700 bg-neutral-50/50 dark:bg-neutral-900/50 text-neutral-700 dark:text-neutral-300 text-xs ${geomSansClasses.badge} w-max`}
+                    className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-300 dark:border-neutral-700 bg-neutral-50/50 dark:bg-neutral-900/50 text-black dark:text-white text-xs ${geomSansClasses.badge} w-max`}
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     <span>Available Now</span>
@@ -324,18 +313,6 @@ const LandingPage: React.FC = () => {
                     technical rigor meets visual precision.
                   </motion.p>
 
-                  {/* Bio Note */}
-                  <motion.p
-                    className={`text-sm lg:text-base text-muted-foreground/70 leading-relaxed [text-wrap:balance] max-w-xl italic ${geomSansClasses.body}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.35 }}
-                  >
-                    I make pixels move and moments freeze. If it's not responsive, it's not mine.
-                    <br />
-                    <span className="text-xs text-muted-foreground/50">Warning: I may start explaining aperture or React hooks unprovoked.</span>
-                  </motion.p>
-
                   {/* CTA Buttons */}
                   <motion.div
                     className="flex flex-col gap-3 pt-4"
@@ -358,7 +335,7 @@ const LandingPage: React.FC = () => {
 
                     <Link href="/photography">
                       <motion.button
-                        className={`w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900/50 text-foreground ${geomSansClasses.subheading} text-base transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
+                        className={`w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-transparent hover:opacity-90 text-foreground ${geomSansClasses.subheading} text-base transition-opacity duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
                         whileHover={{ y: -2 }}
                         whileTap={{ scale: 0.95 }}
                         transition={springTransition}
