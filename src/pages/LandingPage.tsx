@@ -274,6 +274,18 @@ const LandingPage: React.FC = () => {
                   technical rigor meets visual precision.
                 </motion.p>
 
+                {/* Short Bio Note */}
+                <motion.p
+                  className={`text-sm lg:text-base text-muted-foreground/70 leading-relaxed [text-wrap:balance] max-w-xl italic ${geomSansClasses.body}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.35 }}
+                >
+                  I make pixels move and moments freeze. If it's not responsive, it's not mine.
+                  <br />
+                  <span className="text-xs text-muted-foreground/50">Warning: I may start explaining aperture or React hooks unprovoked.</span>
+                </motion.p>
+
                 {/* CTA Buttons */}
                 <motion.div
                   className="flex flex-col gap-3 pt-4"
