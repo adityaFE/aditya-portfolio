@@ -378,7 +378,7 @@ export default function KineticGrid({
   return (
     <div
       className={cn(
-        "relative w-full min-h-screen overflow-hidden",
+        "relative w-full overflow-hidden",
         globalColor === "monochrome" ? "bg-[#000000]" : "bg-[#161618]",
         className,
       )}
@@ -388,7 +388,7 @@ export default function KineticGrid({
         className="fixed inset-0 w-full h-full z-0 pointer-events-none"
       />
 
-      <div className="relative z-10 w-full h-full">{children}</div>
+      <div className="relative z-10 w-full">{children}</div>
     </div>
   );
 }
