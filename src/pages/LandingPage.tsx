@@ -1,18 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
-import ProfileCard from "../../react-bits/ProfileCard/ProfileCard";
 import TextType from "../../react-bits/TextType/TextType";
-import GradientText from "../../react-bits/GradientText/GradientText";
 import "../index.css";
 import ClickSpark from "../../react-bits/ClickSpark/ClickSpark";
 import { MouseFollower } from "@/components/MouseFollower";
+import SocialButtons from "@/components/SocialButtons";
 import { greetings } from "@/data";
-import { PORTFOLIO_GRADIENT, GRADIENT_ANIMATION_SPEED } from "@/lib/constants";
+import { ArrowUpRight, ArrowDown, X } from "lucide-react";
+import KineticGrid from "@/components/ui/kinetic-grid";
+import Lanyard from "@/components/ui/lanyard";
+
+// Geometric Sans Premium Typography Style
+const geomSansClasses = {
+  heading: "font-[family-name:var(--font-geist-sans)] font-bold tracking-[-0.02em]",
+  subheading: "font-[family-name:var(--font-geist-sans)] font-semibold tracking-[-0.01em]",
+  body: "font-[family-name:var(--font-geist-sans)] font-normal tracking-[0.002em]",
+  badge: "font-[family-name:var(--font-geist-mono)] font-medium tracking-[0.05em]",
+};
 
 const LandingPage: React.FC = () => {
   const [index, setIndex] = useState(0);
-  const [viewportHeight, setViewportHeight] = useState(0);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     document.title = "Aditya Anand";
@@ -26,177 +37,362 @@ const LandingPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const handleResize = () => setViewportHeight(window.innerHeight);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    if (isVideoOpen && videoRef.current) {
+      void videoRef.current.play();
+    }
+  }, [isVideoOpen]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setHasScrolled(true);
+      } else {
+        setHasScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const currentGreeting = greetings[index];
 
+  const springTransition = {
+    type: "spring" as const,
+    stiffness: 350,
+    damping: 30,
+  };
+
   return (
-    <div className="relative text-blue-500 overflow-x-hidden">
-      <ClickSpark
-        sparkColor="#fff"
-        sparkSize={10}
-        sparkRadius={15}
-        sparkCount={8}
-        duration={400}
-      >
-        <MouseFollower />
-        <div
-          className="md:hidden w-full flex flex-col items-center justify-between relative px-6 py-10 space-y-10"
-          style={{ minHeight: viewportHeight }}
+    <KineticGrid globalColor="monochrome">
+      <div className="relative text-foreground overflow-x-hidden">
+        <ClickSpark
+          sparkColor="#fff"
+          sparkSize={10}
+          sparkRadius={15}
+          sparkCount={8}
+          duration={400}
         >
-          <div className="flex-1 flex items-center justify-center">
-            <ProfileCard
-              name="Aditya Anand"
-              showBehindGradient={true}
-              avatarUrl="/aditya-updated-bg.png"
-              showUserInfo={true}
-              enableTilt={true}
-              enableMobileTilt={true}
-              behindGradient={`radial-gradient(circle at 30% 30%, hsl(180, 100%, 60%, 0.6), transparent 70%),
-  radial-gradient(circle at 70% 70%, hsl(220, 100%, 65%, 0.5), transparent 70%),
-  repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0px, rgba(0,0,0,0.02) 1px)`}
-              mobileTiltSensitivity={6}
-            />
-          </div>
+          <MouseFollower />
 
-          <motion.div
-            className="mb-6 text-blue-300 text-sm flex flex-col items-center"
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            <span className="text-primary">Scroll Down</span>
-            <motion.span
-              className="text-xl"
-              animate={{ y: [0, 4, 0] }}
-              transition={{ duration: 1.2, repeat: Infinity }}
-            >
-              ↓
-            </motion.span>
-          </motion.div>
-        </div>
-
-        <div className="flex flex-col md:flex-row items-center justify-center gap-12 p-6 md:p-4 md:gap-12 min-h-screen">
-          <motion.div
-            className="w-full md:flex-1 max-w-md flex flex-col items-center md:items-start justify-center
-                     px-6 md:px-0 py-16 md:py-12 text-center md:text-left space-y-8"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          >
-            <AnimatePresence mode="wait">
-              <motion.h1
-                key={currentGreeting.text}
-                className="text-4xl md:text-5xl font-bold mb-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-              >
-                <TextType
-                  text={currentGreeting.text}
-                  textColors={["hsl(var(--primary))"]}
-                  typingSpeed={75}
-                  pauseDuration={1500}
-                  showCursor={true}
-                  cursorCharacter="|"
-                />
-              </motion.h1>
-            </AnimatePresence>
-
-            <motion.p
-              className="text-lg md:text-lg mb-8 max-w-md text-blue-300 leading-relaxed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <GradientText
-                colors={PORTFOLIO_GRADIENT}
-                animationSpeed={GRADIENT_ANIMATION_SPEED}
-                showBorder={false}
-                className="gradient-text-landing-page"
-              >
-                I make pixels move and moments freeze. If it’s not responsive,
-                it’s not mine.
-              </GradientText>
-              <br />
-              <GradientText
-                colors={PORTFOLIO_GRADIENT}
-                animationSpeed={GRADIENT_ANIMATION_SPEED}
-                showBorder={false}
-                className="gradient-text-landing-page"
-              >
-                Warning: I may start explaining aperture or React hooks
-                unprovoked.
-              </GradientText>
-            </motion.p>
-
+          {/* Mobile Hero Section - Lanyard Only */}
+          <section className="w-full md:hidden relative h-[100dvh] flex flex-col items-center justify-center">
+            {/* Lanyard Hero */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 w-full max-w-md"
+              className="relative w-full flex items-center justify-center px-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
+              transition={{ duration: 0.8 }}
             >
-              <Link href="/technical">
-                <motion.div
-                  className="bg-secondary text-secondary-foreground px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-300 text-center cursor-pointer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <GradientText
-                    colors={PORTFOLIO_GRADIENT}
-                    animationSpeed={GRADIENT_ANIMATION_SPEED}
-                    showBorder={false}
-                    className="custom-class"
-                  >
-                    Technical
-                  </GradientText>
-                </motion.div>
-              </Link>
-              <Link href="/photography">
-                <motion.div
-                  className="bg-secondary text-primary-foreground px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-300 transform hover:scale-105 text-center cursor-pointer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <GradientText
-                    colors={PORTFOLIO_GRADIENT}
-                    animationSpeed={GRADIENT_ANIMATION_SPEED}
-                    showBorder={false}
-                    className="custom-class"
-                  >
-                    Creator
-                  </GradientText>
-                </motion.div>
-              </Link>
+              <div className="w-full max-w-sm" style={{ height: "500px" }}>
+                <Lanyard
+                  frontImage="/Screenshot 2026-10-17 at 06.45.19.png"
+                  cardColor="#ffffff"
+                  orientation="portrait"
+                  finish="glossy"
+                  cornerRadius={0.2}
+                  size={0.9}
+                  anchor="center"
+                  strapLength={0.2}
+                  strapColor="#111111"
+                  metal="silver"
+                  gravity={0.8}
+                  damping={0.6}
+                  elasticity={0.4}
+                  breeze={0.3}
+                  interactive={true}
+                  intro={false}
+                  className="w-full h-full"
+                />
+              </div>
             </motion.div>
-          </motion.div>
 
-          <motion.div
-            className="hidden md:flex justify-center items-center flex-shrink-0 max-w-sm"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <ProfileCard
-              name="Aditya Anand"
-              showBehindGradient={true}
-              avatarUrl="/aditya-updated-bg.png"
-              showUserInfo={true}
-              behindGradient={`radial-gradient(circle at 30% 30%, hsl(180, 100%, 60%, 0.6), transparent 70%),
-  radial-gradient(circle at 70% 70%, hsl(220, 100%, 65%, 0.5), transparent 70%),
-  repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0px, rgba(0,0,0,0.02) 1px)`}
-              enableTilt={true}
-              enableMobileTilt={true}
-              mobileTiltSensitivity={6}
-            />
-          </motion.div>
-        </div>
-      </ClickSpark>
-    </div>
+            {/* Scroll Indicator */}
+            <AnimatePresence>
+              {!hasScrolled && (
+                <motion.div
+                  className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: 2.5, duration: 0.6 }}
+                >
+                  <span className={`text-xs text-muted-foreground/60 uppercase tracking-widest ${geomSansClasses.badge}`}>
+                    Scroll
+                  </span>
+                  <motion.div
+                    animate={{ y: [0, 8, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+                    className="text-muted-foreground/60"
+                  >
+                    <ArrowDown className="w-4 h-4" />
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </section>
+
+          {/* Mobile Content Section - Below Hero */}
+          <section className="w-full md:hidden relative py-12 px-4">
+            <motion.div
+              className="w-full flex flex-col items-center text-center space-y-6 max-w-sm mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              {/* Status Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-300 dark:border-neutral-700 bg-neutral-50/50 dark:bg-neutral-900/50 text-black dark:text-white text-xs ${geomSansClasses.badge} w-max`}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Available Now</span>
+              </motion.div>
+
+              {/* Greeting */}
+              <div>
+                <AnimatePresence mode="wait">
+                  <motion.h1
+                    key={currentGreeting.text}
+                    className={`text-3xl sm:text-4xl ${geomSansClasses.heading} text-foreground [text-wrap:balance]`}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <TextType
+                      text={currentGreeting.text}
+                      textColors={["hsl(var(--foreground))"]}
+                      typingSpeed={75}
+                      pauseDuration={1500}
+                      showCursor={true}
+                      cursorCharacter="|"
+                    />
+                  </motion.h1>
+                </AnimatePresence>
+              </div>
+
+              {/* Tagline */}
+              <motion.p
+                className={`text-sm sm:text-base text-muted-foreground leading-relaxed [text-wrap:balance] ${geomSansClasses.body}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                Building high-performance, accessible web applications where
+                technical rigor meets visual precision.
+              </motion.p>
+
+
+              {/* CTA Buttons */}
+              <motion.div
+                className="flex flex-col gap-3 pt-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <Link href="/technical">
+                  <motion.button
+                    className={`w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-foreground text-background ${geomSansClasses.subheading} text-sm hover:opacity-90 transition-opacity duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
+                    whileHover={{ scale: 0.98 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label="Explore my technical work"
+                  >
+                    <span>Explore Work</span>
+                    <ArrowUpRight className="w-4 h-4" />
+                  </motion.button>
+                </Link>
+
+                <Link href="/photography">
+                  <motion.button
+                    className={`w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-transparent hover:opacity-90 text-foreground ${geomSansClasses.subheading} text-sm transition-opacity duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
+                    whileHover={{ scale: 0.98 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label="View my photography"
+                  >
+                    View Gallery
+                  </motion.button>
+                </Link>
+              </motion.div>
+
+              {/* Social Links */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
+                <SocialButtons />
+              </motion.div>
+            </motion.div>
+          </section>
+
+          {/* Desktop Layout: Centered with Lanyard and Text */}
+          <section className="relative w-full">
+            <div className="hidden md:flex w-full h-full items-center justify-center px-6 lg:px-8 py-20">
+              <div className="w-full max-w-7xl grid grid-cols-2 gap-16 items-center">
+                {/* Left: Lanyard Interactive Card */}
+                <motion.div
+                  className="relative flex items-center justify-center w-full"
+                  initial={{ opacity: 0, x: -40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  style={{ height: "800px" }}
+                >
+                  <Lanyard
+                    frontImage="/Screenshot 2026-10-17 at 06.45.19.png"
+                    cardColor="#ffffff"
+                    orientation="portrait"
+                    finish="glossy"
+                    cornerRadius={0.2}
+                    size={0.85}
+                    anchor="center"
+                    strapLength={0.2}
+                    strapColor="#111111"
+                    metal="silver"
+                    gravity={1}
+                    damping={0.5}
+                    elasticity={0.5}
+                    breeze={0.5}
+                    interactive={true}
+                    intro={true}
+                    className="w-full h-full"
+                  />
+                </motion.div>
+
+                {/* Right: Text Content */}
+                <motion.div
+                  className="flex flex-col justify-center space-y-8"
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  {/* Status Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-300 dark:border-neutral-700 bg-neutral-50/50 dark:bg-neutral-900/50 text-black dark:text-white text-xs ${geomSansClasses.badge} w-max`}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Available Now</span>
+                  </motion.div>
+
+                  {/* Greeting */}
+                  <div>
+                    <AnimatePresence mode="wait">
+                      <motion.h1
+                        key={currentGreeting.text}
+                        className={`text-6xl xl:text-7xl ${geomSansClasses.heading} text-foreground [text-wrap:balance]`}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.4 }}
+                      >
+                        <TextType
+                          text={currentGreeting.text}
+                          textColors={["hsl(var(--foreground))"]}
+                          typingSpeed={75}
+                          pauseDuration={1500}
+                          showCursor={true}
+                          cursorCharacter="|"
+                        />
+                      </motion.h1>
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Tagline */}
+                  <motion.p
+                    className={`text-lg lg:text-xl text-muted-foreground leading-relaxed [text-wrap:balance] max-w-xl ${geomSansClasses.body}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                  >
+                    Building high-performance, accessible web applications where
+                    technical rigor meets visual precision.
+                  </motion.p>
+
+                  {/* CTA Buttons */}
+                  <motion.div
+                    className="flex flex-col gap-3 pt-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                  >
+                    <Link href="/technical">
+                      <motion.button
+                        className={`w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-foreground text-background ${geomSansClasses.subheading} text-base hover:opacity-90 transition-opacity duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={springTransition}
+                        aria-label="Explore my technical work"
+                      >
+                        <span>Explore Work</span>
+                        <ArrowUpRight className="w-5 h-5" />
+                      </motion.button>
+                    </Link>
+
+                    <Link href="/photography">
+                      <motion.button
+                        className={`w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-transparent hover:opacity-90 text-foreground ${geomSansClasses.subheading} text-base transition-opacity duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={springTransition}
+                        aria-label="View my photography"
+                      >
+                        View Gallery
+                      </motion.button>
+                    </Link>
+                  </motion.div>
+
+                  {/* Social Links */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                  >
+                    <SocialButtons />
+                  </motion.div>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+
+          {/* Video Modal */}
+          <AnimatePresence>
+            {isVideoOpen && (
+              <motion.div
+                className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsVideoOpen(false)}
+              >
+                <motion.div
+                  className="relative w-full max-w-2xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl"
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* Close Button */}
+                  <motion.button
+                    className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors duration-200"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setIsVideoOpen(false)}
+                    aria-label="Close video"
+                  >
+                    <X className="w-6 h-6" />
+                  </motion.button>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </ClickSpark>
+      </div>
+    </KineticGrid>
   );
 };
 
