@@ -116,7 +116,7 @@ export default function Navbar() {
               <Github className="w-4 h-4" aria-hidden="true" />
             </a>
             <a
-              href="https://www.linkedin.com/in/aditya-anand-frontend/"
+              href="https://www.linkedin.com/in/aditya-anand-4a843516a/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 text-muted-foreground hover:text-foreground hover:bg-white/5 rounded-xl transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"

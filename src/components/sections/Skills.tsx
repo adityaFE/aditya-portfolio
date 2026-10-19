@@ -7,7 +7,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="py-24 bg-background relative overflow-hidden scroll-mt-24"
+      className="py-24 relative overflow-hidden scroll-mt-24"
       aria-label="Technical Skills and Stack"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

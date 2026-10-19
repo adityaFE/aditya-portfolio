@@ -24,9 +24,9 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-        <Suspense fallback={null}>
+        {/* <Suspense fallback={null}>
           <ParticleBackground />
-        </Suspense>
+        </Suspense> */}
         <Router />
         <Toaster />
     </QueryClientProvider>

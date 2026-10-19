@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import ThreeScene from "../three/ThreeScene";
 import SocialButtons from "../SocialButtons";
-import { ArrowDown, ArrowUpRight, Sparkles, FileText } from "lucide-react";
+import { ArrowDown, ArrowUpRight, FileText } from "lucide-react";
+import TechText from "@/react-bits/TechText/TechText";
+import TextLoop from "@/react-bits/TextLoop/TextLoop";
 
 export default function Hero() {
   return (
@@ -10,7 +11,6 @@ export default function Hero() {
       className="min-h-screen relative flex items-center justify-center overflow-hidden pt-20 pb-12 scroll-mt-24"
       aria-label="Introduction & Overview"
     >
-      <ThreeScene />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         {/* Availability Telemetry Badge */}
@@ -18,10 +18,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-[11px] font-mono tracking-[0.2em] uppercase mb-8 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.15)]"
+          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-[11px] font-mono tracking-[0.25em] uppercase mb-8 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.15)]"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
-          <span>Telemetry // Available for Senior Roles</span>
+          <span className="tabular-nums">Available for Senior Roles</span>
         </motion.div>
 
         {/* Name and Title */}
@@ -31,12 +31,48 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="space-y-3"
         >
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-foreground [text-wrap:balance]">
-            Aditya Anand
-          </h1>
+          <div className="h-[100px] sm:h-[140px] md:h-[180px] w-full flex items-center justify-center text-foreground">
+            <TechText
+              text="Aditya Anand"
+              fontSize={120}
+              align="center"
+              accentColor="hsl(var(--primary))"
+            />
+          </div>
           <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-300 to-pink-400 [text-wrap:balance]">
             Senior Frontend Engineer & Creative Developer
           </p>
+        </motion.div>
+
+        {/* TextLoop Component Integration */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="my-2 py-1 max-w-xl mx-auto opacity-90 hover:opacity-100 transition-opacity"
+        >
+          <TextLoop
+            text="React ✦ TypeScript ✦ Architecture ✦ UI Engineering ✦"
+            shape="wave"
+            speed={70}
+            direction="forward"
+            separator="✦"
+            curviness={40}
+            tilt={0}
+            fontSize={52}
+            fontWeight={900}
+            letterSpacing={1.5}
+            uppercase
+            ribbon={true}
+            ribbonColor="rgba(168, 85, 247, 0.2)"
+            ribbonWidth={128}
+            edgeFade={0.2}
+            cross={false}
+            draggable={false}
+            outline={true}
+            scrollBoost={0.1}
+            pauseOnHover={true}
+          />
         </motion.div>
 
         {/* Narrative Subtitle */}
