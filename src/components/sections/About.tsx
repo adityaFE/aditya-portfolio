@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { User, Code2, Zap, Palette, Wrench } from "lucide-react";
+import CountUp from "@/react-bits/CountUp/CountUp";
 
 export default function About() {
   const highlights = [
@@ -28,7 +29,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-24 bg-background relative overflow-hidden scroll-mt-24"
+      className="py-24 relative overflow-hidden scroll-mt-24"
       aria-label="About Aditya Anand"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,7 +65,7 @@ export default function About() {
               Passionate about engineering seamless, high-performance web experiences.
             </h3>
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              With over 4+ years of professional engineering experience, I specialize in architecting high-performance web applications using React, TypeScript, Vite, and modern state management ecosystems.
+              With over 5+ years of professional engineering experience, I specialize in architecting high-performance web applications using React, TypeScript, Vite, and modern state management ecosystems.
             </p>
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
               I believe great software lives at the intersection of technical rigor and bespoke visual precision. My approach prioritizes strict type safety, responsive performance, accessible UX (WCAG), and frictionless developer workflows.
@@ -73,15 +74,42 @@ export default function About() {
             {/* Telemetry HUD Gauges */}
             <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-3 sm:gap-4 text-center">
               <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-primary/40 transition-[border-color,background-color] duration-300">
-                <div className="text-2xl sm:text-3xl font-bold font-mono text-primary tabular-nums">4+</div>
+                <div className="text-2xl sm:text-3xl font-bold font-mono text-primary tabular-nums">
+                  <CountUp
+                    to={5}
+                    from={0}
+                    duration={2}
+                    suffix="+"
+                    trigger="view"
+                    replayOnHover
+                  />
+                </div>
                 <div className="text-[10px] font-mono tracking-wider text-muted-foreground uppercase mt-1">Years Exp</div>
               </div>
               <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-cyan-400/40 transition-[border-color,background-color] duration-300">
-                <div className="text-2xl sm:text-3xl font-bold font-mono text-cyan-400 tabular-nums">15+</div>
+                <div className="text-2xl sm:text-3xl font-bold font-mono text-cyan-400 tabular-nums">
+                  <CountUp
+                    to={15}
+                    from={0}
+                    duration={2}
+                    suffix="+"
+                    trigger="view"
+                    replayOnHover
+                  />
+                </div>
                 <div className="text-[10px] font-mono tracking-wider text-muted-foreground uppercase mt-1">Shipped</div>
               </div>
               <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-400/40 transition-[border-color,background-color] duration-300">
-                <div className="text-2xl sm:text-3xl font-bold font-mono text-emerald-400 tabular-nums">95%+</div>
+                <div className="text-2xl sm:text-3xl font-bold font-mono text-emerald-400 tabular-nums">
+                  <CountUp
+                    to={95}
+                    from={0}
+                    duration={2}
+                    suffix="%+"
+                    trigger="view"
+                    replayOnHover
+                  />
+                </div>
                 <div className="text-[10px] font-mono tracking-wider text-muted-foreground uppercase mt-1">Coverage</div>
               </div>
             </div>

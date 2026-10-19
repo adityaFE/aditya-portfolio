@@ -13,10 +13,10 @@ import Lanyard from "@/components/ui/lanyard";
 
 // Geometric Sans Premium Typography Style
 const geomSansClasses = {
-  heading: "font-[family-name:var(--font-geist-sans)] font-bold tracking-[-0.02em]",
-  subheading: "font-[family-name:var(--font-geist-sans)] font-semibold tracking-[-0.01em]",
-  body: "font-[family-name:var(--font-geist-sans)] font-normal tracking-[0.002em]",
-  badge: "font-[family-name:var(--font-geist-mono)] font-medium tracking-[0.05em]",
+  heading: "font-sans font-bold tracking-tight",
+  subheading: "font-sans font-semibold tracking-tight",
+  body: "font-sans font-normal tracking-normal",
+  badge: "font-mono font-medium tracking-[0.25em]",
 };
 
 const LandingPage: React.FC = () => {
@@ -145,7 +145,7 @@ const LandingPage: React.FC = () => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-300 dark:border-neutral-700 bg-neutral-50/50 dark:bg-neutral-900/50 text-black dark:text-white text-xs ${geomSansClasses.badge} w-max`}
+                className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-300 dark:border-neutral-700 bg-neutral-50/50 dark:bg-neutral-900/50 text-black dark:text-white text-[11px] uppercase ${geomSansClasses.badge} w-max`}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <span>Available Now</span>
@@ -193,26 +193,26 @@ const LandingPage: React.FC = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                <Link href="/technical">
+                <Link href="/technical#hero" target="_blank">
                   <motion.button
                     className={`w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-foreground text-background ${geomSansClasses.subheading} text-sm hover:opacity-90 transition-opacity duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
                     whileHover={{ scale: 0.98 }}
                     whileTap={{ scale: 0.95 }}
                     aria-label="Explore my technical work"
                   >
-                    <span>Explore Work</span>
+                    <span>Technical Dossier</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </motion.button>
                 </Link>
 
-                <Link href="/photography">
+                <Link href="/photography" target="_blank">
                   <motion.button
                     className={`w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-transparent hover:opacity-90 text-foreground ${geomSansClasses.subheading} text-sm transition-opacity duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
                     whileHover={{ scale: 0.98 }}
                     whileTap={{ scale: 0.95 }}
                     aria-label="View my photography"
                   >
-                    View Gallery
+                    View Anthology
                   </motion.button>
                 </Link>
               </motion.div>
@@ -273,7 +273,7 @@ const LandingPage: React.FC = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-300 dark:border-neutral-700 bg-neutral-50/50 dark:bg-neutral-900/50 text-black dark:text-white text-xs ${geomSansClasses.badge} w-max`}
+                    className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-300 dark:border-neutral-700 bg-neutral-50/50 dark:bg-neutral-900/50 text-black dark:text-white text-[11px] uppercase ${geomSansClasses.badge} w-max`}
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     <span>Available Now</span>
@@ -320,7 +320,7 @@ const LandingPage: React.FC = () => {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                   >
-                    <Link href="/technical">
+                    <Link href="/technical#hero" target="_blank">
                       <motion.button
                         className={`w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-foreground text-background ${geomSansClasses.subheading} text-base hover:opacity-90 transition-opacity duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
                         whileHover={{ y: -2 }}
@@ -328,12 +328,12 @@ const LandingPage: React.FC = () => {
                         transition={springTransition}
                         aria-label="Explore my technical work"
                       >
-                        <span>Explore Work</span>
+                        <span>Technical Dossier</span>
                         <ArrowUpRight className="w-5 h-5" />
                       </motion.button>
                     </Link>
 
-                    <Link href="/photography">
+                    <Link href="/photography" target="_blank">
                       <motion.button
                         className={`w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-transparent hover:opacity-90 text-foreground ${geomSansClasses.subheading} text-base transition-opacity duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
                         whileHover={{ y: -2 }}
@@ -341,7 +341,7 @@ const LandingPage: React.FC = () => {
                         transition={springTransition}
                         aria-label="View my photography"
                       >
-                        View Gallery
+                        View Anthology
                       </motion.button>
                     </Link>
                   </motion.div>

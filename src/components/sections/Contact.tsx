@@ -75,7 +75,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-24 bg-background relative overflow-hidden scroll-mt-24"
+      className="py-24 relative overflow-hidden scroll-mt-24"
       aria-label="Contact and Inquiries"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

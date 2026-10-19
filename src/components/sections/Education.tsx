@@ -5,7 +5,7 @@ import { education } from "@/data";
 
 export default function Education() {
   return (
-    <section id="education" className="py-24 bg-background relative overflow-hidden scroll-mt-24" aria-label="Academic Background & Education">
+    <section id="education" className="py-24 relative overflow-hidden scroll-mt-24" aria-label="Academic Background & Education">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
