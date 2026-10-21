@@ -27,14 +27,10 @@ export default function Contact() {
       email: "",
       message: "",
     },
-    mode: "onBlur",
+    mode: "onSubmit",
   });
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = form;
+  const { handleSubmit, control } = form;
 
   const sendEmail = async (data: {
     name: string;
@@ -43,16 +39,23 @@ export default function Contact() {
   }) => {
     setLoading(true);
     try {
-      await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: data.name,
-          from_email: data.email,
-          message: data.message,
-        },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      );
+      const templateParams = {
+        from_name: data.name,
+        from_email: data.email,
+        reply_to: data.email,
+        message: data.message,
+        to_name: "Aditya Anand",
+      };
+
+      const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceID || !templateID || !publicKey) {
+        throw new Error("EmailJS environment variables are missing.");
+      }
+
+      await emailjs.send(serviceID, templateID, templateParams, publicKey);
 
       setIsSuccess(true);
       toast({
@@ -61,10 +64,11 @@ export default function Contact() {
       });
 
       form.reset();
-    } catch (error) {
+    } catch (error: any) {
+      console.error("EmailJS Error:", error);
       toast({
         title: "Error Sending Message",
-        description: "Unable to deliver message right now. Please email directly at adityaanandofficial@gmail.com",
+        description: error?.text || error?.message || "Failed to send message. Please email directly at adityaanandofficial@gmail.com",
         variant: "destructive",
       });
     } finally {
